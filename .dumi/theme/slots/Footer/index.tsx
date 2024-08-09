@@ -1,10 +1,10 @@
-import React,{useContext} from 'react'
-import { createStyles } from 'antd-style';
-import RcFooter from 'rc-footer';
 import { TinyColor } from '@ctrl/tinycolor';
+import { createStyles } from 'antd-style';
 import getAlphaColor from 'antd/es/theme/util/getAlphaColor';
+import { FormattedMessage } from 'dumi';
+import RcFooter from 'rc-footer';
+import React, { useContext } from 'react';
 import SiteContext from '../SiteContext';
-import { FormattedMessage, Link } from 'dumi';
 
 const useStyle = () => {
   const { isMobile } = useContext(SiteContext);
@@ -14,10 +14,6 @@ const useStyle = () => {
       .toHexString();
 
     return {
-      holder: css`
-        background: ${background};
-      `,
-
       footer: css`
         background: ${background};
         color: ${token.colorTextSecondary};
@@ -60,18 +56,15 @@ const useStyle = () => {
   })();
 };
 
-
 const Footer = () => {
-
   const { styles } = useStyle();
-
 
   const col1 = {
     title: <FormattedMessage id="app.footer.resources" />,
     items: [
       {
         title: 'Ant Design Charts',
-        url:  'https://ant-design-charts.antgroup.com',
+        url: 'https://ant-design-charts.antgroup.com',
         openExternal: true,
       },
       {
@@ -86,12 +79,12 @@ const Footer = () => {
       },
       {
         title: 'Ant Design Mobile',
-        url:  'https://mobile.ant.design',
+        url: 'https://mobile.ant.design',
         openExternal: true,
       },
       {
         title: 'Ant Design Mini',
-        url:  'https://mini.ant.design',
+        url: 'https://mini.ant.design',
         openExternal: true,
       },
       {
@@ -143,23 +136,20 @@ const Footer = () => {
     ],
   };
 
-
   return (
     <RcFooter
-    className={styles.footer}
-    columns={[
-      col1
-    ]}
-    bottom={
-      <>
-      <div style={{ opacity: '0.4' }}>
-        Made with <span style={{ color: '#fff' }}>❤️</span> by
-      </div>
-      <div>Soybean</div>
-      </>
-    }
-  />
-  )
-}
+      className={styles.footer}
+      columns={[col1]}
+      bottom={
+        <>
+          <div style={{ opacity: '0.4' }}>
+            Made with <span style={{ color: '#fff' }}>❤️</span> by
+          </div>
+          <div>Soybean</div>
+        </>
+      }
+    />
+  );
+};
 
-export default Footer
+export default Footer;
