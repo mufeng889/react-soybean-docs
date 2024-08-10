@@ -1,6 +1,6 @@
+import { Helmet } from 'dumi';
 import type { PropsWithChildren } from 'react';
 import React from 'react';
-import { Helmet } from 'dumi';
 
 import Footer from '../../slots/Footer';
 
@@ -11,7 +11,6 @@ interface IndexLayoutProps {
 
 const IndexLayout: React.FC<PropsWithChildren<IndexLayoutProps>> = (props) => {
   const { children, title, desc } = props;
-  console.log(props);
 
   return (
     <>
