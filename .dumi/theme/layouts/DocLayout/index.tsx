@@ -1,35 +1,27 @@
-import classNames from 'classnames';
-import dayjs from 'dayjs';
-
-import 'dayjs/locale/zh-cn';
-
 import ConfigProvider from 'antd/es/config-provider';
 import zhCN from 'antd/es/locale/zh_CN';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import { Helmet, useOutlet, useSiteData } from 'dumi';
-import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react';
-
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import useLocale from '../../../hooks/useLocale';
 import useLocation from '../../../hooks/useLocation';
 import GlobalStyles from '../../common/GlobalStyles';
 import Header from '../../slots/Header';
-import SiteContext from '../../slots/SiteContext';
-
 import '../../static/style';
-
 import IndexLayout from '../IndexLayout';
 import ResourceLayout from '../ResourceLayout';
 import SidebarLayout from '../SidebarLayout';
 
 const locales = {
   cn: {
-    title: 'React Soybean - 一套企业级 UI 设计语言和 React 组件库',
-    description:
-      '基于 Ant Design 设计体系的 React UI 组件库，用于研发企业级中后台产品。',
+    title: 'React Soybean - 一个清新优雅的后台管理模板',
+    description: '一个清新优雅的后台管理模板',
   },
   en: {
     title: "Ant Design - The world's second most popular React UI framework",
     description:
-      'An enterprise-class UI design language and React UI library with a set of high-quality React components, one of best React UI library for enterprises',
+      'a fresh and elegant admin templatea fresh and elegant admin template',
   },
 };
 
@@ -39,7 +31,6 @@ const DocLayout: React.FC = () => {
   const { pathname, search, hash } = location;
   const [locale, lang] = useLocale(locales);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
-  const { direction } = useContext(SiteContext);
   const { loading } = useSiteData();
 
   useLayoutEffect(() => {
@@ -97,22 +88,19 @@ const DocLayout: React.FC = () => {
       <Helmet encodeSpecialCharacters={false}>
         <html
           lang={lang === 'cn' ? 'zh-CN' : lang}
-          data-direction={direction}
-          className={classNames({ rtl: direction === 'rtl' })}
         />
         <link
-          sizes="144x144"
-          href="https://gw.alipayobjects.com/zos/antfincdn/UmVnt3t4T0/antd.png"
+          sizes="200x200"
+          href="https://avatars.githubusercontent.com/u/119996361?s=200&v=4"
         />
         <meta property="og:description" content={locale.description} />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
+          content="https://avatars.githubusercontent.com/u/119996361?s=200&v=4"
         />
       </Helmet>
       <ConfigProvider
-        direction={direction}
         locale={lang === 'cn' ? zhCN : undefined}
       >
         <GlobalStyles />

@@ -11,7 +11,7 @@ interface IndexLayoutProps {
 
 const IndexLayout: React.FC<PropsWithChildren<IndexLayoutProps>> = (props) => {
   const { children, title, desc } = props;
-
+    
   return (
     <>
       <Helmet>

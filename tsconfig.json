@@ -1,17 +1,34 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "jsx": "react",
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM"],
+    "useDefineForClassFields": true,
     "baseUrl": "./",
-    "resolveJsonModule": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "react-soybean-docs": ["src"],
       "react-soybean-docs/*": ["src/*", "*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "types": ["node", "unplugin-icons/types/react", "dumi"],
+    "allowImportingTsExtensions": true,
+    "allowJs": false,
+    /* Linting */
+    "strict": true,
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "include": [".dumirc.ts", "src/**/*"]
+  "include": [".dumirc.ts", "src/**/*", ".dumi/**/*", "types/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

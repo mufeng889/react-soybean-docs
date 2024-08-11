@@ -1,10 +1,10 @@
+import { createHash } from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
 import createEmotionServer from '@emotion/server/create-instance';
 import chalk from 'chalk';
-import { createHash } from 'crypto';
 import type { IApi, IRoute } from 'dumi';
 import ReactTechStack from 'dumi/dist/techStacks/react';
-import fs from 'fs';
-import path from 'path';
 import sylvanas from 'sylvanas';
 
 import { dependencies, devDependencies } from '../../package.json';
@@ -12,34 +12,27 @@ import { dependencies, devDependencies } from '../../package.json';
 function extractEmotionStyle(html: string) {
   // copy from emotion ssr
   // https://github.com/vercel/next.js/blob/deprecated-main/examples/with-emotion-vanilla/pages/_document.js
-  const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__
-    .getCacheList()
-    .map((cache) => {
-      const result = createEmotionServer(cache).extractCritical(html);
-      if (!result.css) {
-        return null;
-      }
+  const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__.getCacheList().map(cache => {
+    const result = createEmotionServer(cache).extractCritical(html);
+    if (!result.css) {
+      return null;
+    }
 
-      const { css, ids } = result;
+    const { css, ids } = result;
 
-      return {
-        key: cache.key,
-        css,
-        ids,
-        tag: `<style data-emotion="${cache.key} ${result.ids.join(' ')}">${
-          result.css
-        }</style>`,
-      };
-    });
+    return {
+      key: cache.key,
+      css,
+      ids,
+      tag: `<style data-emotion="${cache.key} ${result.ids.join(' ')}">${result.css}</style>`
+    };
+  });
   return styles.filter(Boolean);
 }
 
-export const getHash = (str: string, length = 8) =>
-  createHash('md5').update(str).digest('hex').slice(0, length);
+export const getHash = (str: string, length = 8) => createHash('md5').update(str).digest('hex').slice(0, length);
 
-/**
- * extends dumi internal tech stack, for customize previewer props
- */
+/** extends dumi internal tech stack, for customize previewer props */
 class AntdReactTechStack extends ReactTechStack {
   // eslint-disable-next-line class-methods-use-this
   generatePreviewerProps(...[props, opts]: any) {
@@ -47,9 +40,7 @@ class AntdReactTechStack extends ReactTechStack {
     props.jsx ??= '';
 
     if (opts.type === 'code-block') {
-      props.jsx = opts?.entryPointCode
-        ? sylvanas.parseText(opts.entryPointCode)
-        : '';
+      props.jsx = opts?.entryPointCode ? sylvanas.parseText(opts.entryPointCode) : '';
     }
 
     if (opts.type === 'external') {
@@ -59,9 +50,7 @@ class AntdReactTechStack extends ReactTechStack {
       const md = fs.existsSync(mdPath) ? fs.readFileSync(mdPath, 'utf-8') : '';
 
       const codePath = opts.fileAbsPath!.replace(/\.\w+$/, '.tsx');
-      const code = fs.existsSync(codePath)
-        ? fs.readFileSync(codePath, 'utf-8')
-        : '';
+      const code = fs.existsSync(codePath) ? fs.readFileSync(codePath, 'utf-8') : '';
 
       props.jsx = sylvanas.parseText(code);
 
@@ -155,78 +144,66 @@ const RoutesPlugin = (api: IApi) => {
     const prefix = api.userConfig.publicPath || api.config.publicPath;
 
     if (prepend) {
-      return html.replace(
-        '<head>',
-        `<head><link rel="stylesheet" href="${prefix + cssFile}">`,
-      );
+      return html.replace('<head>', `<head><link rel="stylesheet" href="${prefix + cssFile}">`);
     }
 
-    return html.replace(
-      '</head>',
-      `<link rel="stylesheet" href="${prefix + cssFile}"></head>`,
-    );
+    return html.replace('</head>', `<link rel="stylesheet" href="${prefix + cssFile}"></head>`);
   };
 
   api.registerTechStack(() => new AntdReactTechStack());
 
-  api.modifyRoutes((routes) => {
-    // TODO: append extra routes, such as home, changelog, form-v3
-
+  api.modifyRoutes(routes => {
     const extraRoutesList: IRoute[] = [
       {
         id: 'changelog-cn',
         path: 'changelog-cn',
         absPath: '/changelog-cn',
         parentId: 'DocLayout',
-        file: resolve('../../CHANGELOG.zh-CN.md'),
+        file: resolve('../../CHANGELOG.zh-CN.md')
       },
       {
         id: 'changelog',
         path: 'changelog',
         absPath: '/changelog',
         parentId: 'DocLayout',
-        file: resolve('../../CHANGELOG.en-US.md'),
-      },
+        file: resolve('../../CHANGELOG.en-US.md')
+      }
     ];
 
-    extraRoutesList.forEach((itemRoute) => {
+    extraRoutesList.forEach(itemRoute => {
       routes[itemRoute.path] = itemRoute;
     });
 
     return routes;
   });
 
-  api.modifyExportHTMLFiles((files) =>
+  api.modifyExportHTMLFiles(files =>
     files
       // exclude dynamic route path, to avoid deploy failed by `:id` directory
-      .filter((f) => !f.path.includes(':'))
-      .map((file) => {
+      .filter(f => !f.path.includes(':'))
+      .map(file => {
         // 1. 提取 antd-style 样式
         const styles = extractEmotionStyle(file.content);
 
         // 2. 提取每个样式到独立 css 文件
-        styles.forEach((result) => {
+        styles.forEach(result => {
           api.logger.event(
             `${chalk.yellow(file.path)} include ${chalk.blue`[${
               result!.key
-            }]`} ${chalk.yellow(result!.ids.length)} styles`,
+            }]`} ${chalk.yellow(result!.ids.length)} styles`
           );
 
-          const cssFile = writeCSSFile(
-            result!.key,
-            result!.ids.join(''),
-            result!.css,
-          );
+          const cssFile = writeCSSFile(result!.key, result!.ids.join(''), result!.css);
 
           file.content = addLinkStyle(file.content, cssFile);
         });
 
         return file;
-      }),
+      })
   );
 
   // add ssr css file to html
-  api.modifyConfig((memo) => {
+  api.modifyConfig(memo => {
     memo.styles ??= [];
     // memo.styles.push(`/${ssrCssFileName}`);
 

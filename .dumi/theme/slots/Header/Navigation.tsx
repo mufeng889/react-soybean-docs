@@ -4,7 +4,6 @@ import { Menu } from 'antd';
 import { createStyles, css } from 'antd-style';
 import { FormattedMessage, useFullSidebarData, useLocation } from 'dumi';
 import * as React from 'react';
-
 import useLocale from '../../../hooks/useLocale';
 import Link from '../../common/Link';
 import * as utils from '../../utils';
@@ -72,9 +71,7 @@ const useStyle = createStyles(({ token }) => {
 export interface NavigationProps extends SharedProps {
   isMobile: boolean;
   responsive: null | 'narrow' | 'crowded';
-  directionText: string;
   onLangChange: () => void;
-  onDirectionChange: () => void;
 }
 
 const HeaderNavigation: React.FC<NavigationProps> = (props) => {
@@ -82,9 +79,7 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
     isZhCN,
     isMobile,
     responsive,
-    directionText,
     onLangChange,
-    onDirectionChange,
   } = props;
   const { pathname, search } = useLocation();
   const [locale] = useLocale(locales);
@@ -123,11 +118,6 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
       label: <FormattedMessage id="app.header.lang" />,
       onClick: onLangChange,
       key: 'switch-lang',
-    },
-    {
-      label: directionText,
-      onClick: onDirectionChange,
-      key: 'switch-direction',
     },
   ];
 
@@ -214,20 +204,6 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
       ),
       key: 'docs/resources',
     },
-    isZhCN
-      ? {
-          key: 'mirror',
-          label: (
-            <a
-              href="https://ant-design.antgroup.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              国内镜像
-            </a>
-          ),
-        }
-      : null,
     ...(additional ?? []),
   ].filter(Boolean);
 

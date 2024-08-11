@@ -16,7 +16,7 @@ const SiteContext = React.createContext<SiteContextProps>({
   bannerVisible: false,
   direction: 'ltr',
   theme: ['light'],
-  updateSiteConfig: () => {},
+  updateSiteConfig: () => {}
 });
 
 export default SiteContext;

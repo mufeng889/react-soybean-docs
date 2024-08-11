@@ -1,51 +1,34 @@
-import { GithubOutlined, MenuOutlined } from '@ant-design/icons';
-import { Alert, Col, ConfigProvider, Popover, Row, Select } from 'antd';
-import { createStyles } from 'antd-style';
-import classNames from 'classnames';
-import dayjs from 'dayjs';
-import { useLocation, useSiteData } from 'dumi';
-import DumiSearchBar from 'dumi/theme-default/slots/SearchBar';
+import {  MenuOutlined } from "@ant-design/icons";
+import { Col,Popover, Row } from "antd";
+import { createStyles } from "antd-style";
+import classNames from "classnames";
+import { useLocation } from "dumi";
+import DumiSearchBar from "dumi/theme-default/slots/SearchBar";
+import ButtonIcon from '../../builtins/ButtonIcon'
 import React, {
   useCallback,
   useContext,
   useEffect,
-  useMemo,
   useRef,
   useState,
-} from 'react';
-
-import useLocale from '../../../hooks/useLocale';
-import DirectionIcon from '../../icons/DirectionIcon';
-import { ANT_DESIGN_NOT_SHOW_BANNER } from '../../layouts/GlobalLayout';
-import * as utils from '../../utils';
-import { getThemeConfig } from '../../utils';
-import type { SiteContextProps } from '../SiteContext';
-import SiteContext from '../SiteContext';
-import type { SharedProps } from './interface';
-import Logo from './Logo';
-import Navigation from './Navigation';
-import SwitchBtn from './SwitchBtn';
+} from "react";
+import useLocale from "../../../hooks/useLocale";
+import * as utils from "../../utils";
+import type { SiteContextProps } from "../SiteContext";
+import SiteContext from "../SiteContext";
+import type { SharedProps } from "./interface";
+import Logo from "./Logo";
+import Navigation from "./Navigation";
+import SwitchBtn from "./SwitchBtn";
+import ResourceLink from "./ResourceLink";
 
 const RESPONSIVE_XS = 1120;
 const RESPONSIVE_SM = 1200;
 
-const locales = {
-  cn: {
-    message: '语雀征文 · 说说你和开源的故事，赢取 Ant Design 精美周边 🎁',
-    shortMessage: '语雀征文 · 说说你和开源的故事，赢取 Ant Design 精美周边 🎁',
-    more: '前往了解',
-    link: 'https://www.yuque.com/opensource2023',
-  },
-  en: {
-    message: '',
-    shortMessage: '',
-    more: '',
-    link: '',
-  },
-};
+
 
 const useStyle = createStyles(({ token, css }) => {
-  const searchIconColor = '#ced4d9';
+  const searchIconColor = "#ced4d9";
   return {
     header: css`
       position: sticky;
@@ -164,17 +147,15 @@ interface HeaderState {
 
 // ================================= Header =================================
 const Header: React.FC = () => {
-  const [locale, lang] = useLocale(locales);
+  const [_,lang] = useLocale();
 
-  const { pkg } = useSiteData();
-
-  const themeConfig = getThemeConfig();
   const [headerState, setHeaderState] = useState<HeaderState>({
     menuVisible: false,
     windowWidth: 1400,
     searching: false,
   });
-  const { direction, isMobile, bannerVisible, updateSiteConfig } =
+
+  const { isMobile, } =
     useContext<SiteContextProps>(SiteContext);
   const pingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
@@ -191,16 +172,8 @@ const Header: React.FC = () => {
   const onMenuVisibleChange = useCallback((visible: boolean) => {
     setHeaderState((prev) => ({ ...prev, menuVisible: visible }));
   }, []);
-  const onDirectionChange = () => {
-    updateSiteConfig({ direction: direction !== 'rtl' ? 'rtl' : 'ltr' });
-  };
-  const onBannerClose = () => {
-    updateSiteConfig({ bannerVisible: false });
 
-    if (utils.isLocalStorageNameSupported()) {
-      localStorage.setItem(ANT_DESIGN_NOT_SHOW_BANNER, dayjs().toISOString());
-    }
-  };
+
 
   useEffect(() => {
     handleHideMenu();
@@ -208,38 +181,17 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     onWindowResize();
-    window.addEventListener('resize', onWindowResize);
+    window.addEventListener("resize", onWindowResize);
     return () => {
-      window.removeEventListener('resize', onWindowResize);
+      window.removeEventListener("resize", onWindowResize);
       if (pingTimer.current) {
         clearTimeout(pingTimer.current);
       }
     };
   }, []);
 
-  // eslint-disable-next-line class-methods-use-this
-  const handleVersionChange = useCallback((url: string) => {
-    const currentUrl = window.location.href;
-    const currentPathname = window.location.pathname;
-    if (/overview/.test(currentPathname) && /0?[1-39][0-3]?x/.test(url)) {
-      window.location.href = currentUrl
-        .replace(window.location.origin, url)
-        .replace(
-          /\/components\/overview/,
-          `/docs${/0(9|10)x/.test(url) ? '' : '/react'}/introduce`,
-        )
-        .replace(/\/$/, '');
-      return;
-    }
-    // Mirror url must have `/`, we add this for compatible
-    const urlObj = new URL(currentUrl.replace(window.location.origin, url));
-    if (urlObj.host.includes('antgroup')) {
-      urlObj.pathname = `${urlObj.pathname.replace(/\/$/, '')}/`;
-      window.location.href = urlObj.toString();
-    } else {
-      window.location.href = urlObj.href.replace(/\/$/, '');
-    }
-  }, []);
+
+
 
   const onLangChange = useCallback(() => {
     const currentProtocol = `${window.location.protocol}//`;
@@ -247,8 +199,8 @@ const Header: React.FC = () => {
 
     if (utils.isLocalStorageNameSupported()) {
       localStorage.setItem(
-        'locale',
-        utils.isZhCN(pathname) ? 'en-US' : 'zh-CN',
+        "locale",
+        utils.isZhCN(pathname) ? "en-US" : "zh-CN"
       );
     }
     window.location.href =
@@ -256,47 +208,33 @@ const Header: React.FC = () => {
       currentHref.replace(
         window.location.pathname,
         utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname), search)
-          .pathname,
+          .pathname
       );
   }, [location]);
 
-  const nextDirectionText = useMemo<string>(
-    () => (direction !== 'rtl' ? 'RTL' : 'LTR'),
-    [direction],
-  );
 
-  const getDropdownStyle = useMemo<React.CSSProperties>(
-    () => (direction === 'rtl' ? { direction: 'ltr', textAlign: 'right' } : {}),
-    [direction],
-  );
+
+
 
   const { menuVisible, windowWidth, searching } = headerState;
-  const docVersions: Record<string, string> = {
-    [pkg.version]: pkg.version,
-    ...themeConfig?.docVersions,
-  };
-  const versionOptions = Object.keys(docVersions).map((version) => ({
-    value: docVersions[version],
-    label: version,
-  }));
 
-  const isHome = ['', 'index', 'index-cn'].includes(pathname);
-  const isZhCN = lang === 'cn';
-  const isRTL = direction === 'rtl';
-  let responsive: null | 'narrow' | 'crowded' = null;
+
+
+  const isHome = ["", "index", "index-cn"].includes(pathname);
+  const isZhCN = lang === "cn";
+  let responsive: null | "narrow" | "crowded" = null;
   if (windowWidth < RESPONSIVE_XS) {
-    responsive = 'crowded';
+    responsive = "crowded";
   } else if (windowWidth < RESPONSIVE_SM) {
-    responsive = 'narrow';
+    responsive = "narrow";
   }
 
-  const headerClassName = classNames(styles.header, 'clearfix', {
-    'home-header': isHome,
+  const headerClassName = classNames(styles.header, "clearfix", {
+    "home-header": isHome,
   });
 
   const sharedProps: SharedProps = {
     isZhCN,
-    isRTL,
   };
 
   const navigationNode = (
@@ -305,25 +243,13 @@ const Header: React.FC = () => {
       {...sharedProps}
       responsive={responsive}
       isMobile={isMobile}
-      directionText={nextDirectionText}
       onLangChange={onLangChange}
-      onDirectionChange={onDirectionChange}
     />
   );
 
   let menu = [
     navigationNode,
-    <Select
-      key="version"
-      size="small"
-      className={styles.versionSelect}
-      defaultValue={pkg.version}
-      onChange={handleVersionChange}
-      dropdownStyle={getDropdownStyle}
-      popupMatchSelectWidth={false}
-      getPopupContainer={(trigger) => trigger.parentNode}
-      options={versionOptions}
-    />,
+    <ResourceLink/>,
     <SwitchBtn
       key="lang"
       onClick={onLangChange}
@@ -333,35 +259,26 @@ const Header: React.FC = () => {
       tooltip1="中文 / English"
       tooltip2="English / 中文"
     />,
-    <SwitchBtn
-      key="direction"
-      onClick={onDirectionChange}
-      value={direction === 'rtl' ? 2 : 1}
-      label1={
-        <DirectionIcon className={styles.dataDirectionIcon} direction="ltr" />
-      }
-      tooltip1="LTR"
-      label2={
-        <DirectionIcon className={styles.dataDirectionIcon} direction="rtl" />
-      }
-      tooltip2="RTL"
-      pure
-      aria-label="RTL Switch Button"
-    />,
-    <a
-      key="github"
-      href="https://github.com/ant-design/ant-design"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <SwitchBtn
-        value={1}
-        label1={<GithubOutlined />}
-        tooltip1="Github"
-        label2={null}
-        pure
-      />
+     <a
+     key="github"
+     href="https://github.com/mufeng889/react-soybean-admin.git"
+     target="_blank"
+     rel="noreferrer"
+   >
+    <ButtonIcon tooltipContent="Github"  icon="logos:github-icon"/>
     </a>,
+          <a
+          key="qq"
+          href="https://qm.qq.com/cgi-bin/qm/qr?k=WBX5tYiXMmmeid0Vw4yaqtSFqdBugAYY&jump_from=webapi&authKey=DNjXMlJRUf0EMrM+WV9fed2D1PaB3isk8Ph/6GYyruQeR2W/eIz5V6sk1FLJUP98"
+          target="_blank"
+          rel="noreferrer"
+        >
+    <ButtonIcon tooltipContent="qq" icon="logos:github-icon">
+      {IconLocalQq({className:'w-20px h-22px'})}
+            </ButtonIcon>,
+            </a>
+
+
   ];
 
   if (windowWidth < RESPONSIVE_XS) {
@@ -371,7 +288,7 @@ const Header: React.FC = () => {
   }
 
   const colProps = isHome
-    ? [{ flex: 'none' }, { flex: 'auto' }]
+    ? [{ flex: "none" }, { flex: "auto" }]
     : [
         { xxl: 4, xl: 5, lg: 6, md: 6, sm: 24, xs: 24 },
         { xxl: 20, xl: 19, lg: 18, md: 18, sm: 0, xs: 0 },
@@ -392,51 +309,16 @@ const Header: React.FC = () => {
           <MenuOutlined className="nav-phone-icon" />
         </Popover>
       )}
-      {isZhCN && bannerVisible && (
-        <ConfigProvider
-          theme={{
-            token: {
-              colorInfoBg: 'linear-gradient(90deg, #84fab0, #8fd3f4)',
-              colorTextBase: '#000',
-            },
-          }}
-        >
-          <Alert
-            className={styles.banner}
-            message={
-              <>
-                <span>{isMobile ? locale.shortMessage : locale.message}</span>
-                <a
-                  className={styles.link}
-                  href={locale.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => {
-                    window.gtag?.('event', '点击', {
-                      event_category: 'top_banner',
-                      event_label: locale.link,
-                    });
-                  }}
-                >
-                  {locale.more}
-                </a>
-              </>
-            }
-            type="info"
-            banner
-            closable
-            showIcon={false}
-            onClose={onBannerClose}
-          />
-        </ConfigProvider>
-      )}
-      <Row style={{ flexFlow: 'nowrap', height: 64 }}>
+
+      <Row style={{ flexFlow: "nowrap", height: 64 }}>
         <Col {...colProps[0]}>
-          <Logo {...sharedProps} location={location} />
+          <Logo {...sharedProps}  />
+
         </Col>
         <Col {...colProps[1]}>
           <div className={styles.menuRow}>
             <DumiSearchBar />
+
             {!isMobile && menu}
           </div>
         </Col>

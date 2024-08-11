@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 import { useLocation } from 'dumi';
-import * as React from 'react';
+import  type {FC} from 'react';
 
 import Link from '../../common/Link';
 import * as utils from '../../utils';
@@ -49,13 +49,12 @@ const useStyle = createStyles(({ token, css }) => {
 
 export interface LogoProps {
   isZhCN: boolean;
-  location: any;
 }
 
 const logoSrc =
-  'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg';
+  '/logo.svg';
 
-const Logo: React.FC<LogoProps> = ({ isZhCN }) => {
+const Logo: FC<LogoProps> = ({ isZhCN }) => {
   const { search } = useLocation();
   const { styles } = useStyle();
   return (
@@ -65,7 +64,7 @@ const Logo: React.FC<LogoProps> = ({ isZhCN }) => {
         className={styles.logo}
       >
         <img src={logoSrc} draggable={false} alt="logo" />
-        <span className={styles.title}>Ant Design</span>
+        <span className={styles.title}>React Soybean</span>
       </Link>
     </h1>
   );

@@ -1,7 +1,6 @@
 import { ConfigProvider, theme } from 'antd';
 import { createStyles, css } from 'antd-style';
 import React, { Suspense } from 'react';
-
 import useDark from '../../hooks/useDark';
 import useLocale from '../../hooks/useLocale';
 import BannerRecommends from './components/BannerRecommends';

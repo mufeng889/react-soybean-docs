@@ -1,21 +1,22 @@
-import { Button, ConfigProvider, Flex, Typography } from 'antd';
+import { Button,  Flex, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Link, useLocation } from 'dumi';
 import React, { Suspense } from 'react';
-
 import useLocale from '../../../../hooks/useLocale';
 import SiteContext from '../../../../theme/slots/SiteContext';
 import * as utils from '../../../../theme/utils';
 import GroupMaskLayer from '../GroupMaskLayer';
+
+const {Title}= Typography
 
 const ComponentsBlock = React.lazy(() => import('./ComponentsBlock'));
 
 const locales = {
   cn: {
     slogan:
-      '助力设计开发者「更灵活」地搭建出「更美」的产品，让用户「快乐工作」～',
+      '基于 React18,React-Router-Dom V6,Vite5,TypeScript 和 UnoCSS',
     start: '开始使用',
-    designLanguage: '设计语言',
+    designLanguage: '详细介绍',
   },
   en: {
     slogan:
@@ -26,8 +27,8 @@ const locales = {
 };
 
 const useStyle = () => {
-  const { direction } = React.useContext(ConfigProvider.ConfigContext);
-  const isRTL = direction === 'rtl';
+
+
   return createStyles(({ token, css, cx }) => {
     const textShadow = `0 0 4px ${token.colorBgContainer}`;
 
@@ -74,10 +75,18 @@ const useStyle = () => {
 
         h1 {
           font-family: AliPuHui, ${token.fontFamily} !important;
+          margin-bottom: 15px;
           font-weight: 900 !important;
           font-size: ${token.fontSizeHeading2 * 2}px !important;
           line-height: ${token.lineHeightHeading2} !important;
         }
+
+          h3 {
+          font-family: AliPuHui, ${token.fontFamily} !important;
+          margin:0 !important;
+          margin-bottom: 15px !important;
+        }
+
 
         p {
           font-size: ${token.fontSizeLG}px !important;
@@ -86,14 +95,6 @@ const useStyle = () => {
         }
       `,
 
-      block: css`
-        position: absolute;
-        inset-inline-end: 0;
-        top: -38px;
-        transform: ${isRTL
-          ? 'rotate3d(24, 83, -45, 57deg)'
-          : 'rotate3d(24, -83, 45, 57deg)'};
-      `,
       child: css`
         position: relative;
         width: 100%;
@@ -145,14 +146,19 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
         {/* Mobile not show the component preview */}
         <Suspense fallback={null}>
           {isMobile ? null : (
-            <div className={styles.block}>
               <ComponentsBlock />
-            </div>
           )}
         </Suspense>
         <div className={styles.mask} />
         <Typography className={styles.typography}>
-          <h1>Ant Design 5.0</h1>
+          <h1>
+            <span className='home-page-title'>React Soybean </span>
+          </h1>
+          <Title level={
+          3
+          }>
+           一个符合 Ant Design 设计理念的清新优雅的中后台管理模板
+          </Title>
           <p>{locale.slogan}</p>
         </Typography>
         <Flex gap="middle" className={styles.btnWrap}>
@@ -163,7 +169,7 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
               search,
             )}
           >
-            <Button size="large" type="primary">
+            <Button  shape="round" size="large" type="primary">
               {locale.start}
             </Button>
           </Link>
@@ -174,7 +180,7 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
               search,
             )}
           >
-            <Button size="large">{locale.designLanguage}</Button>
+            <Button  shape="round" size="large">{locale.designLanguage}</Button>
           </Link>
         </Flex>
         <div className={styles.child}>{children}</div>
