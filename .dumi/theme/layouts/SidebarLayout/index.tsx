@@ -1,23 +1,22 @@
-import { css } from '@emotion/react';
-import type { FC, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
+import { createStyles } from 'antd-style';
+
 import CommonHelmet from '../../common/CommonHelmet';
 import Content from '../../slots/Content';
 import Sidebar from '../../slots/Sidebar';
 
-const useStyle = () => {
-  return {
-    mainWrap: css`
-      display: flex;
-      flex: 1;
-      margin-top: 40px;
-    `,
-  };
-};
+const useStyle = createStyles(({ css, token }) => ({
+  main: css`
+    display: flex;
+    margin-top: ${token.contentMarginTop}px;
+  `,
+}));
 
-const SidebarLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
-  const style = useStyle();
+const SidebarLayout: React.FC<PropsWithChildren> = ({ children }) => {
+  const { styles } = useStyle();
   return (
-    <main css={style.mainWrap}>
+    <main className={styles.main}>
       <CommonHelmet />
       <Sidebar />
       <Content>{children}</Content>

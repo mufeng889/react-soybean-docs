@@ -1,18 +1,14 @@
-const chineseMirror =
-  typeof location !== 'undefined' &&
-  location.hostname.includes('.antgroup.com');
-
 export default {
   categoryOrder: {
-    'Ant Design': 0,
-    全局样式: 1,
+    开始: 0,
+    主题: 1,
     'Global Styles': 1,
     设计模式: 2,
     'Design Patterns': 2,
     '设计模式 - 探索': 3,
     'Design Patterns (Research)': 3,
     Components: 100,
-    组件: 100,
+    组件: 100
   },
   typeOrder: {
     // Component
@@ -44,18 +40,6 @@ export default {
     ProComponents: 8,
     'Global Rules': 2,
     模板文档: 3,
-    'Template Document': 3,
-  },
-  docVersions: {
-    '4.x': chineseMirror
-      ? 'https://4x-ant-design.antgroup.com'
-      : 'https://4x.ant.design',
-    '3.x': 'https://3x.ant.design',
-    '2.x': 'https://2x.ant.design',
-    '1.x': 'https://1x.ant.design',
-    '0.12.x': 'https://012x.ant.design',
-    '0.11.x': 'https://011x.ant.design',
-    '0.10.x': 'https://010x.ant.design',
-    '0.9.x': 'https://09x.ant.design',
-  },
+    'Template Document': 3
+  }
 };

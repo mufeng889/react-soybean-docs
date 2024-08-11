@@ -5,7 +5,7 @@ export interface SiteContextProps {
 }
 
 const SiteContext = createContext<SiteContextProps>({
-  isMobile: false,
+  isMobile: false
 });
 
 export default SiteContext;

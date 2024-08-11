@@ -79,6 +79,7 @@ const RecommendItem: React.FC<RecommendItemProps> = ({
     return <Skeleton key={index} />;
   }
   const icon = icons.find((i) => i.name === extra.source);
+  console.log(extra,icons);
 
   const card = (
     <a
@@ -102,7 +103,7 @@ const RecommendItem: React.FC<RecommendItemProps> = ({
         <Typography.Text>{extra.date}</Typography.Text>
         {icon && (
           <img
-            src={icon.href}
+            src='https://gw.alipayobjects.com/zos/basement_prod/53e7a5b8-c9f4-45a4-8378-cbf50f2dd0d0.svg'
             style={{ height: token.fontSize }}
             alt="banner"
           />

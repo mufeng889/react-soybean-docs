@@ -12,14 +12,14 @@ import type { SharedProps } from './interface';
 // ============================= Theme =============================
 const locales = {
   cn: {
-    design: '设计',
+    design: '指引',
     development: '研发',
     components: '组件',
     resources: '资源',
     blog: '博客',
   },
   en: {
-    design: 'Design',
+    design: 'Guide',
     development: 'Development',
     components: 'Components',
     resources: 'Resources',
@@ -138,7 +138,7 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
       label: (
         <Link
           to={utils.getLocalizedPathname(
-            '/docs/spec/introduce',
+            '/docs/guide/intro/',
             isZhCN,
             search,
           )}
@@ -146,7 +146,7 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
           {locale.design}
         </Link>
       ),
-      key: 'docs/spec',
+      key: '/guide/intro',
     },
     {
       label: (

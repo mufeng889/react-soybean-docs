@@ -2,14 +2,12 @@ import { Col, Flex, Space, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import classNames from 'classnames';
 import { FormattedMessage, useRouteMeta } from 'dumi';
-import React, { useContext, useLayoutEffect, useMemo, useState } from 'react';
-
+import React, {  useLayoutEffect, useMemo, useState } from 'react';
 import useLayoutState from '../../../hooks/useLayoutState';
 import useLocation from '../../../hooks/useLocation';
 import ComponentMeta from '../../builtins/ComponentMeta';
 import type { DemoContextProps } from '../DemoContext';
 import DemoContext from '../DemoContext';
-import SiteContext from '../SiteContext';
 import InViewSuspense from './InViewSuspense';
 
 const Contributors = React.lazy(() => import('./Contributors'));
@@ -41,7 +39,6 @@ const useStyle = createStyles(({ token, css }) => ({
 const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
   const meta = useRouteMeta();
   const { pathname, hash } = useLocation();
-  const { direction } = useContext(SiteContext);
   const { styles } = useStyle();
 
   const [showDebug, setShowDebug] = useLayoutState(false);
@@ -63,7 +60,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
     [showDebug, codeType, debugDemos],
   );
 
-  const isRTL = direction === 'rtl';
+
 
   return (
     <DemoContext.Provider value={contextValue}>
@@ -71,7 +68,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
         <InViewSuspense fallback={null}>
           <DocAnchor showDebug={showDebug} debugDemos={debugDemos} />
         </InViewSuspense>
-        <article className={classNames(styles.articleWrapper, { rtl: isRTL })}>
+        <article className={classNames(styles.articleWrapper)}>
           {meta.frontmatter?.title ? (
             <Flex justify="space-between">
               <Typography.Title style={{ fontSize: 32, position: 'relative' }}>
@@ -98,7 +95,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
           <InViewSuspense fallback={null}>
             <DocMeta />
           </InViewSuspense>
-          {!meta.frontmatter.__autoDescription && meta.frontmatter.description}
+
 
           {/* Import Info */}
           {meta.frontmatter.category === 'Components' &&
@@ -132,7 +129,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
           </InViewSuspense>
         </article>
         <InViewSuspense fallback={null}>
-          <PrevAndNext rtl={isRTL} />
+          <PrevAndNext  />
         </InViewSuspense>
         <Footer />
       </Col>

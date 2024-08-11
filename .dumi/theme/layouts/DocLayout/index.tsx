@@ -19,7 +19,7 @@ const locales = {
     description: '一个清新优雅的后台管理模板',
   },
   en: {
-    title: "Ant Design - The world's second most popular React UI framework",
+    title: "React Soybean - The world's second most popular React UI framework",
     description:
       'a fresh and elegant admin templatea fresh and elegant admin template',
   },

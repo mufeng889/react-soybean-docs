@@ -166,7 +166,7 @@ const ColumnCard: React.FC<Props> = ({ zhihuLink, yuqueLink, juejinLink }) => {
           </div>
         </>
       )}
-      {yuqueLink && (
+
         <>
           <Divider />
           <div className={cardBody}>
@@ -199,7 +199,7 @@ const ColumnCard: React.FC<Props> = ({ zhihuLink, yuqueLink, juejinLink }) => {
             </Button>
           </div>
         </>
-      )}
+
       {juejinLink && (
         <>
           <Divider />

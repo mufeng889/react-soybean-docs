@@ -15,12 +15,14 @@ const locales = {
   cn: {
     slogan:
       '基于 React18,React-Router-Dom V6,Vite5,TypeScript 和 UnoCSS',
+    subheading:'一个符合 Ant Design 设计理念的清新优雅的中后台管理模板',
     start: '开始使用',
     designLanguage: '详细介绍',
   },
   en: {
     slogan:
-      'Help designers/developers building beautiful products more flexible and working with happiness',
+      'Based on React18,React-Router-Dom V6,Vite5,TypeScript, and UnoCSS',
+    subheading:'A fresh and elegant middle and back office management template in line with Ant Design design philosophy',
     start: 'Getting Started',
     designLanguage: 'Design Language',
   },
@@ -157,7 +159,7 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
           <Title level={
           3
           }>
-           一个符合 Ant Design 设计理念的清新优雅的中后台管理模板
+          {locale.subheading}
           </Title>
           <p>{locale.slogan}</p>
         </Typography>

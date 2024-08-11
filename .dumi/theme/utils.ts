@@ -23,19 +23,12 @@ interface Orders {
   [key: string]: number;
 }
 
-export function getMenuItems(
-  moduleData: ModuleDataItem[],
-  locale: string,
-  categoryOrder: Orders,
-  typeOrder: Orders,
-) {
-  const menuMeta = moduleData
-    .map((item) => item.meta)
-    .filter((meta) => !meta.skip);
+export function getMenuItems(moduleData: ModuleDataItem[], locale: string, categoryOrder: Orders, typeOrder: Orders) {
+  const menuMeta = moduleData.map(item => item.meta).filter(meta => !meta.skip);
 
   const menuItems: Meta[] = [];
   const sortFn = (a: Meta, b: Meta) => (a.order || 0) - (b.order || 0);
-  menuMeta.sort(sortFn).forEach((meta) => {
+  menuMeta.sort(sortFn).forEach(meta => {
     // Format
     if (meta.category) {
       meta.category = meta.category[locale] || meta.category;
@@ -54,13 +47,13 @@ export function getMenuItems(
 
     // Component
     if (meta.category === 'Components' && meta.type) {
-      let type = menuItems.find((i) => i?.title === meta.type);
+      let type = menuItems.find(i => i?.title === meta.type);
       if (!type) {
         type = {
           type: 'type',
           title: meta.type,
           children: [],
-          order: typeOrder[meta.type],
+          order: typeOrder[meta.type]
         };
         menuItems.push(type);
       }
@@ -69,14 +62,14 @@ export function getMenuItems(
       return;
     }
 
-    let group = menuItems.find((i) => i?.title === meta.category);
+    let group = menuItems.find(i => i?.title === meta.category);
 
     if (!group) {
       group = {
         type: 'category',
         title: meta.category,
         children: [],
-        order: categoryOrder[meta.category],
+        order: categoryOrder[meta.category]
       };
       menuItems.push(group);
     }
@@ -84,13 +77,13 @@ export function getMenuItems(
     group.children = group.children || [];
 
     if (meta.type) {
-      let type = group.children.filter((i) => i?.title === meta.type)[0];
+      let type = group.children.filter(i => i?.title === meta.type)[0];
       if (!type) {
         type = {
           type: 'type',
           title: meta.type,
           children: [],
-          order: typeOrder[meta.type],
+          order: typeOrder[meta.type]
         };
         group.children.push(type);
       }
@@ -102,11 +95,11 @@ export function getMenuItems(
   });
 
   function nestSort(list: Meta[]): Meta[] {
-    return list.sort(sortFn).map((item) => {
+    return list.sort(sortFn).map(item => {
       if (item.children) {
         return {
           ...item,
-          children: nestSort(item.children),
+          children: nestSort(item.children)
         };
       }
 
@@ -128,7 +121,7 @@ export function getLocalizedPathname(
   hash?: {
     zhCN?: string;
     enUS?: string;
-  },
+  }
 ) {
   const pathname = path.startsWith('/') ? path : `/${path}`;
   let fullPath: string;
@@ -154,11 +147,7 @@ export function getLocalizedPathname(
 
 export function ping(callback: (status: string) => void) {
   const url =
-    'https://private-a' +
-    'lipay' +
-    'objects.alip' +
-    'ay.com/alip' +
-    'ay-rmsdeploy-image/rmsportal/RKuAiriJqrUhyqW.png';
+    'https://private-a' + 'lipay' + 'objects.alip' + 'ay.com/alip' + 'ay-rmsdeploy-image/rmsportal/RKuAiriJqrUhyqW.png';
   const img = new Image();
   let done: boolean;
   const finish = (status: string) => {
@@ -204,7 +193,7 @@ export function getMetaDescription(jml?: any[] | null) {
   }
   const paragraph = flattenDeep(
     jml
-      .filter((item) => {
+      .filter(item => {
         if (Array.isArray(item)) {
           const [tag] = item;
           return tag === 'p';
@@ -212,19 +201,12 @@ export function getMetaDescription(jml?: any[] | null) {
         return false;
       })
       // ['p', ['code', 'aa'], 'bb'] => ['p', 'aabb']
-      .map((item) => {
+      .map(item => {
         const [tag, ...others] = flatten(item);
-        const content = others
-          .filter(
-            (other) =>
-              typeof other === 'string' && !COMMON_TAGS.includes(other),
-          )
-          .join('');
+        const content = others.filter(other => typeof other === 'string' && !COMMON_TAGS.includes(other)).join('');
         return [tag, content];
-      }),
-  ).find(
-    (p) => p && typeof p === 'string' && !COMMON_TAGS.includes(p),
-  ) as string;
+      })
+  ).find(p => p && typeof p === 'string' && !COMMON_TAGS.includes(p)) as string;
   return paragraph;
 }
 

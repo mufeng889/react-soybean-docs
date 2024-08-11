@@ -15,35 +15,15 @@ console.log(localIconPath);
 
 export default defineConfig({
   outputPath: 'docs-dist',
-  themeConfig: {
-    nav: [
-      {
-        title: '链接',
-        children: [
-          {
-            title: '在线预览(NaiveUI)',
-            link: 'https://naive.soybeanjs.cn'
-          },
-          {
-            title: '在线预览(AntDesignVue)',
-            link: 'https://antd.soybeanjs.cn'
-          },
-          {
-            title: 'Github 仓库',
-            link: 'https://github.com/soybeanjs/soybean-admin'
-          },
-          {
-            title: 'Gitee 仓库',
-            link: 'https://gitee.com/honghuangdc/soybean-admin'
-          },
-          {
-            title: '旧版文档',
-            link: 'https://legacy-docs.soybeanjs.cn'
-          }
-        ]
-      }
-    ]
+  resolve: {
+    docDirs: [{ type: 'doc', dir: 'docs' }],
+    atomDirs: [{ type: 'component', dir: 'components' }],
+    codeBlockMode: 'passive'
   },
+  locales: [
+    { id: 'en-US', name: 'English', suffix: '' },
+    { id: 'zh-CN', name: '中文', suffix: '-cn' }
+  ],
   chainWebpack(memo) {
     memo.plugin('icons').use(
       Icons({
