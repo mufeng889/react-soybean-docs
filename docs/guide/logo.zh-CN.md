@@ -1,7 +1,7 @@
 ---
 group: 主题
 order: 7
-title: 概述
+title: Logo
 ---
 
 
@@ -17,7 +17,7 @@ const SystemLogo = memo((props: SVGProps<SVGSVGElement>) => {
 export default SystemLogo;
 
 ```
-::: tip 代码位置
+:::info{title=代码位置}
 src/components/common/system-logo.tsx
 :::
 

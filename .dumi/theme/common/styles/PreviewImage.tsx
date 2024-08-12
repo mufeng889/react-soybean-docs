@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
 import { useTheme } from 'antd-style';
-import React from 'react';
+
 
 export default () => {
   const token = useTheme();

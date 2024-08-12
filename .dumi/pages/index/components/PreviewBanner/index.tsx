@@ -6,6 +6,8 @@ import useLocale from '../../../../hooks/useLocale';
 import SiteContext from '../../../../theme/slots/SiteContext';
 import * as utils from '../../../../theme/utils';
 import GroupMaskLayer from '../GroupMaskLayer';
+import useDark from '../../../../hooks/useDark';
+
 
 const {Title}= Typography
 
@@ -32,13 +34,16 @@ const useStyle = () => {
 
 
   return createStyles(({ token, css, cx }) => {
+
+    const isRootDark = useDark();
+
     const textShadow = `0 0 4px ${token.colorBgContainer}`;
 
     const mask = cx(css`
       position: absolute;
       inset: 0;
       backdrop-filter: blur(4px);
-      opacity: 1;
+      opacity:${isRootDark ? 0 : 1} ;
       background-color: rgba(255, 255, 255, 0.2);
       transition: all 1s ease;
       pointer-events: none;
@@ -171,7 +176,7 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
               search,
             )}
           >
-            <Button  shape="round" size="large" type="primary">
+            <Button   size="large" type="primary">
               {locale.start}
             </Button>
           </Link>
@@ -182,8 +187,10 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
               search,
             )}
           >
-            <Button  shape="round" size="large">{locale.designLanguage}</Button>
+            <Button  size="large">{locale.designLanguage}</Button>
           </Link>
+
+          <Button icon={IconLocalGithub({fill:'var(--ant-color-text)',className:'w-20px h-22px'})}  size="large">Github</Button>
         </Flex>
         <div className={styles.child}>{children}</div>
       </div>

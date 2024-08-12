@@ -1,7 +1,7 @@
 ---
 group: 主题
 order: 6
-title: 系统加载
+title: 加载
 ---
 
 

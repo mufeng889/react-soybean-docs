@@ -265,7 +265,9 @@ const Header: React.FC = () => {
      target="_blank"
      rel="noreferrer"
    >
-    <ButtonIcon tooltipContent="Github"  icon="logos:github-icon"/>
+      <ButtonIcon tooltipContent="github" >
+      {IconLocalGithub({fill:'var(--ant-color-text)',className:'w-20px h-22px'})}
+            </ButtonIcon>
     </a>,
           <a
           key="qq"

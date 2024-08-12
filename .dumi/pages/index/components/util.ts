@@ -1,6 +1,4 @@
 import { css } from 'antd-style';
-import fetch from 'cross-fetch';
-import { useEffect, useState } from 'react';
 
 export interface Author {
   avatar: string;
@@ -66,22 +64,6 @@ export type SiteData = {
   extras: Extras;
   icons: Icons;
 };
-
-export function preLoad(list: string[]) {
-  if (typeof window !== 'undefined') {
-    // 图处预加载；
-    const div = document.createElement('div');
-    div.style.display = 'none';
-    document.body.appendChild(div);
-    list.forEach(src => {
-      const img = new Image();
-      img.src = src;
-      div.appendChild(img);
-    });
-  }
-}
-
-
 
 export const getCarouselStyle = () => ({
   carousel: css`

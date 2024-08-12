@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-const useStyle = createStyles(({ token, css }) => {
+const useStyle = createStyles(({ css }) => {
 
   return {
     image: css`

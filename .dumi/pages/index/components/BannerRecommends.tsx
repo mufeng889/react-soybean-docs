@@ -50,9 +50,12 @@ const useStyle = () => {
       padding: 24px;
       backdrop-filter: blur(10px);
       min-height:168px;
-      background: ${isRootDark ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.1)'};
+      background: ${isRootDark ? 'rgba(0, 0, 0, 0.5)' : 'rgba(243, 242, 242, 0.2)'};
       border: 1px solid
         ${isRootDark ? 'rgba(255, 255, 255, 0.45)' : 'rgba(0, 0, 0, 0.06)'};
+       &:hover {
+        box-shadow: ${token.boxShadow};
+      }
 
      .text-icon {
     display: flex;

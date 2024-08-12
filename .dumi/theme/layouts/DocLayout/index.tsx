@@ -10,7 +10,6 @@ import GlobalStyles from '../../common/GlobalStyles';
 import Header from '../../slots/Header';
 import '../../static/style';
 import IndexLayout from '../IndexLayout';
-import ResourceLayout from '../ResourceLayout';
 import SidebarLayout from '../SidebarLayout';
 
 const locales = {
@@ -74,12 +73,8 @@ const DocLayout: React.FC = () => {
         </IndexLayout>
       );
     }
-    if (pathname.startsWith('/docs/resource')) {
-      return <ResourceLayout>{outlet}</ResourceLayout>;
-    }
-    if (pathname.startsWith('/theme-editor')) {
-      return outlet;
-    }
+
+
     return <SidebarLayout>{outlet}</SidebarLayout>;
   }, [pathname, outlet]);
 
@@ -94,6 +89,8 @@ const DocLayout: React.FC = () => {
           href="https://avatars.githubusercontent.com/u/119996361?s=200&v=4"
         />
         <meta property="og:description" content={locale.description} />
+        <meta property="author" content='Ohh' />
+        <meta property="keywords" content='soybean, soybean-admin, soybean-admin docs' />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"

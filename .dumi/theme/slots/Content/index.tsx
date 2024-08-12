@@ -11,7 +11,6 @@ import DemoContext from '../DemoContext';
 import InViewSuspense from './InViewSuspense';
 
 const Contributors = React.lazy(() => import('./Contributors'));
-const ColumnCard = React.lazy(() => import('./ColumnCard'));
 const DocAnchor = React.lazy(() => import('./DocAnchor'));
 const DocMeta = React.lazy(() => import('./DocMeta'));
 const Footer = React.lazy(() => import('../Footer'));
@@ -115,13 +114,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
           >
             {children}
           </div>
-          <InViewSuspense>
-            <ColumnCard
-              zhihuLink={meta.frontmatter.zhihu_url}
-              yuqueLink={meta.frontmatter.yuque_url}
-              juejinLink={meta.frontmatter.juejin_url}
-            />
-          </InViewSuspense>
+
           <InViewSuspense
             fallback={<div style={{ height: 50, marginTop: 120 }} />}
           >

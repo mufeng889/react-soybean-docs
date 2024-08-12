@@ -1,6 +1,4 @@
 import React from 'react';
-
-import ColorStyle from './Color/ColorStyle';
 import {
   Common,
   Demo,
@@ -26,7 +24,7 @@ const GlobalStyles: React.FC = () => (
     <NProgress />
     <PreviewImage />
     <InlineCard />
-    <ColorStyle />
+
     <HeadingAnchor />
     <SearchBar />
   </>

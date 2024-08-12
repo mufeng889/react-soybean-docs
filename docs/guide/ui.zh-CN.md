@@ -1,7 +1,7 @@
 ---
 group: 主题
 order: 5
-title: 组件库主题
+title: UI 主题
 ---
 
 

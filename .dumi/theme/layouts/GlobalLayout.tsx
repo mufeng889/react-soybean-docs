@@ -6,11 +6,10 @@ import {
   parentSelectorLinter,
   StyleProvider,
 } from '@ant-design/cssinjs';
-import { HappyProvider } from '@ant-design/happy-work-theme';
 import { getSandpackCssText } from '@codesandbox/sandpack-react';
 import type { MappingAlgorithm } from 'antd';
 import { theme as antdTheme, App } from 'antd';
-import type { DirectionType, ThemeConfig } from 'antd/es/config-provider';
+import type { ThemeConfig } from 'antd/es/config-provider';
 import {
   createSearchParams,
   useOutlet,
@@ -18,7 +17,6 @@ import {
   useServerInsertedHTML,
 } from 'dumi';
 import React, { Suspense, useCallback, useEffect } from 'react';
-
 import { DarkContext } from '../../hooks/useDark';
 import useLayoutState from '../../hooks/useLayoutState';
 import useLocation from '../../hooks/useLocation';
@@ -34,11 +32,6 @@ type SiteState = Partial<Omit<SiteContextProps, 'updateSiteContext'>>;
 
 const RESPONSIVE_MOBILE = 768;
 export const ANT_DESIGN_NOT_SHOW_BANNER = 'ANT_DESIGN_NOT_SHOW_BANNER';
-
-// const styleCache = createCache();
-// if (typeof global !== 'undefined') {
-//   (global as any).styleCache = styleCache;
-// }
 
 // Compatible with old anchors
 if (typeof window !== 'undefined') {
@@ -68,11 +61,11 @@ const GlobalLayout: React.FC = () => {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [
-    { theme = [], direction, isMobile, bannerVisible = false },
+    { theme = [], isMobile, bannerVisible = false },
     setSiteState,
   ] = useLayoutState<SiteState>({
     isMobile: false,
-    direction: 'ltr',
+
     theme: [],
     bannerVisible: false,
   });
@@ -87,13 +80,7 @@ const GlobalLayout: React.FC = () => {
       let nextSearchParams: URLSearchParams = searchParams;
       (Object.entries(props) as Entries<SiteContextProps>).forEach(
         ([key, value]) => {
-          if (key === 'direction') {
-            if (value === 'rtl') {
-              nextSearchParams.set('direction', 'rtl');
-            } else {
-              nextSearchParams.delete('direction');
-            }
-          }
+
           if (key === 'theme') {
             nextSearchParams = createSearchParams({
               ...nextSearchParams,
@@ -123,16 +110,9 @@ const GlobalLayout: React.FC = () => {
 
   useEffect(() => {
     const _theme = searchParams.getAll('theme') as ThemeName[];
-    const _direction = searchParams.get('direction') as DirectionType;
-    // const storedBannerVisibleLastTime =
-    //   localStorage && localStorage.getItem(ANT_DESIGN_NOT_SHOW_BANNER);
-    // const storedBannerVisible =
-    //   storedBannerVisibleLastTime && dayjs().diff(dayjs(storedBannerVisibleLastTime), 'day') >= 1;
 
     setSiteState({
       theme: _theme,
-      direction: _direction === 'rtl' ? 'rtl' : 'ltr',
-      // bannerVisible: storedBannerVisibleLastTime ? !!storedBannerVisible : true,
     });
     document.documentElement.setAttribute(
       'data-prefers-color',
@@ -149,13 +129,12 @@ const GlobalLayout: React.FC = () => {
 
   const siteContextValue = React.useMemo<SiteContextProps>(
     () => ({
-      direction,
       updateSiteConfig,
       theme: theme!,
       isMobile: isMobile!,
       bannerVisible,
     }),
-    [isMobile, direction, updateSiteConfig, theme, bannerVisible],
+    [isMobile, updateSiteConfig, theme, bannerVisible],
   );
 
   const themeConfig = React.useMemo<ThemeConfig>(
@@ -175,7 +154,7 @@ const GlobalLayout: React.FC = () => {
       plain: true,
       types: 'style',
     });
-    // biome-ignore lint/security/noDangerouslySetInnerHtml: only used in .dumi
+
     return (
       <style
         data-type="antd-cssinjs"
@@ -194,7 +173,6 @@ const GlobalLayout: React.FC = () => {
         data-type="antd-css-var"
         data-rc-order="prepend"
         data-rc-priority="-9999"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: only used in .dumi
         dangerouslySetInnerHTML={{ __html: styleText }}
       />
     );
@@ -204,7 +182,6 @@ const GlobalLayout: React.FC = () => {
     <style
       data-sandpack="true"
       id="sandpack"
-      // biome-ignore lint/security/noDangerouslySetInnerHtml: only used in .dumi
       dangerouslySetInnerHTML={{ __html: getSandpackCssText() }}
     />
   ));
@@ -237,9 +214,9 @@ const GlobalLayout: React.FC = () => {
       >
         <SiteContext.Provider value={siteContextValue}>
           <SiteThemeProvider theme={themeConfig}>
-            <HappyProvider disabled={!theme.includes('happy-work')}>
+
               {content}
-            </HappyProvider>
+
           </SiteThemeProvider>
         </SiteContext.Provider>
       </StyleProvider>

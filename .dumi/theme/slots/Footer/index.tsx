@@ -3,7 +3,7 @@ import { createStyles } from 'antd-style';
 import getAlphaColor from 'antd/es/theme/util/getAlphaColor';
 import { FormattedMessage } from 'dumi';
 import RcFooter from 'rc-footer';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import SiteContext from '../SiteContext';
 
 const useStyle = () => {
