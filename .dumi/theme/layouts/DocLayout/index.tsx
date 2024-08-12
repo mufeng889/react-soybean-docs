@@ -2,7 +2,7 @@ import ConfigProvider from 'antd/es/config-provider';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import { Helmet, useOutlet, useSiteData } from 'dumi';
+import { Helmet, useOutlet} from 'dumi';
 import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import useLocale from '../../../hooks/useLocale';
 import useLocation from '../../../hooks/useLocation';
@@ -31,7 +31,7 @@ const DocLayout: React.FC = () => {
   const { pathname, search, hash } = location;
   const [locale, lang] = useLocale(locales);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
-  const { loading } = useSiteData();
+
 
   useLayoutEffect(() => {
     if (lang === 'cn') {
@@ -55,7 +55,7 @@ const DocLayout: React.FC = () => {
     if (id) {
       document.getElementById(decodeURIComponent(id))?.scrollIntoView();
     }
-  }, [loading, hash]);
+  }, [ hash]);
 
   useEffect(() => {
     if (typeof (window as any).ga !== 'undefined') {

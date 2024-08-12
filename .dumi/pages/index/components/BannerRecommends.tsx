@@ -1,197 +1,158 @@
-import { Badge, Carousel, Skeleton, Typography } from 'antd';
+import { Col, Row, Typography } from 'antd';
 import { createStyles, useTheme } from 'antd-style';
-import classNames from 'classnames';
+import { Link, useLocation } from 'dumi';
 import React, { useContext } from 'react';
-
+import useDark from '../../../hooks/useDark';
 import useLocale from '../../../hooks/useLocale';
 import SiteContext from '../../../theme/slots/SiteContext';
-import type { Extra, Icon } from './util';
-import { getCarouselStyle, useSiteData } from './util';
+import * as utils from '../../../theme/utils';
 
-const useStyle = createStyles(({ token, css, cx }) => {
-  const { carousel } = getCarouselStyle();
 
-  const itemBase = css`
+const locales = {
+  cn: {
+    values: '最新流行技术栈',
+    valuesDesc: 'React18,React-Router-Dom V6,Vite5,TypeScript 和 UnoCSS',
+    guide: '清晰的项目结构',
+    guideDesc: '采用 pnpm monorepo，结构清晰优雅，易于维护。代码规范性极高。',
+    lib: 'TypeScript',
+    libDesc: '严格的类型检查，易于维护。',
+    theme:'主题配置',
+    themeDesc:'基于 Ant Design，内置了丰富的主题配置，完美结合 UnoCSS，轻松实现主题的动态切换',
+    file:'文件路由系统',
+    fileDesc:'自动化、智能化的文件路由系统,根据文件自动生成本地路由，配合脚本命令，自动生成简易路由文件',
+    route:'权限路由',
+    routeDesc:'支持前端静态路由和后端动态路由'
+  },
+  en: {
+    values: 'Latest Popular Tech Stack',
+    valuesDesc: 'React18,React-Router-Dom V6,Vite5,TypeScript 和 UnoCSS',
+    guide: 'Clear Project Structure',
+    "guideDesc": "Adopts pnpm monorepo, with a clear and elegant structure that is easy to maintain. The code is highly standardized.",
+    "lib": "TypeScript",
+    "libDesc": "Strict type checking, easy to maintain.",
+    "theme": "Theme Configuration",
+    "themeDesc": "Based on Ant Design, includes rich built-in theme configurations, perfectly integrates with UnoCSS, allowing for effortless dynamic theme switching.",
+    "file": "File Routing System",
+    "fileDesc": "Automated and intelligent file routing system that automatically generates local routes based on files, and with script commands, generates simple routing files automatically.",
+    "route": "Permission-based Routing",
+    "routeDesc": "Supports both front-end static routes and back-end dynamic routes."
+  },
+};
+
+
+const useStyle = () => {
+  const isRootDark = useDark();
+
+  return createStyles(({ token, css }) => ({
+    cardMini: css`
+      display: block;
+      border-radius: ${token.borderRadius * 2}px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      min-height:168px;
+      background: ${isRootDark ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.1)'};
+      border: 1px solid
+        ${isRootDark ? 'rgba(255, 255, 255, 0.45)' : 'rgba(0, 0, 0, 0.06)'};
+
+     .text-icon {
     display: flex;
-    flex: 1 1 0;
-    flex-direction: column;
-    align-items: stretch;
-    text-decoration: none;
-    background: ${token.colorBgContainer};
-    border: ${token.lineWidth}px solid ${token.colorBorderSecondary};
-    border-radius: ${token.borderRadiusLG}px;
-    transition: all ${token.motionDurationSlow};
-    padding-block: ${token.paddingMD}px;
-    padding-inline: ${token.paddingLG}px;
-    box-sizing: border-box;
-  `;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background-color: ${isRootDark ?'rgba(13, 13, 13, 0.7)':'rgba(222, 222, 222, 0.4)'};
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    transition: background-color .25s;
+      }
+    `,
+  }))();
+};
 
-  return {
-    itemBase,
-    ribbon: css`
-      & > .${cx(itemBase)} {
-        height: 100%;
-      }
-    `,
-    cardItem: css`
-      &:hover {
-        box-shadow: ${token.boxShadowCard};
-      }
-    `,
-    sliderItem: css`
-      margin: 0 ${token.margin}px;
-      text-align: start;
-    `,
-    container: css`
-      display: flex;
-      width: 100%;
-      max-width: 100%;
-      margin-inline: auto;
-      box-sizing: border-box;
-      column-gap: ${token.paddingMD * 2}px;
-      align-items: stretch;
-      text-align: start;
-      min-height: 178px;
-      > * {
-        width: calc((100% - ${token.marginXXL * 2}px) / 3);
-      }
-    `,
-    carousel,
-  };
-});
-
-interface RecommendItemProps {
-  extra: Extra;
-  index: number;
-  icons: Icon[];
-  className?: string;
-}
-const RecommendItem: React.FC<RecommendItemProps> = ({
-  extra,
-  index,
-  icons,
-  className,
-}) => {
+const DesignFramework: React.FC = () => {
+  const [locale] = useLocale(locales);
   const token = useTheme();
   const { styles } = useStyle();
-
-  if (!extra) {
-    return <Skeleton key={index} />;
-  }
-  const icon = icons.find((i) => i.name === extra.source);
-  console.log(extra,icons);
-
-  const card = (
-    <a
-      key={extra?.title}
-      href={extra.href}
-      target="_blank"
-      className={classNames(styles.itemBase, className)}
-      rel="noreferrer"
-    >
-      <Typography.Title level={5}>{extra?.title}</Typography.Title>
-      <Typography.Paragraph type="secondary" style={{ flex: 'auto' }}>
-        {extra.description}
-      </Typography.Paragraph>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <Typography.Text>{extra.date}</Typography.Text>
-        {icon && (
-          <img
-            src='https://gw.alipayobjects.com/zos/basement_prod/53e7a5b8-c9f4-45a4-8378-cbf50f2dd0d0.svg'
-            style={{ height: token.fontSize }}
-            alt="banner"
-          />
-        )}
-      </div>
-    </a>
-  );
-
-  if (index === 0) {
-    return (
-      <Badge.Ribbon text="HOT" color="red" rootClassName={styles.ribbon}>
-        {card}
-      </Badge.Ribbon>
-    );
-  }
-
-  return card;
-};
-
-export const BannerRecommendsFallback: React.FC = () => {
+  const { pathname, search } = useLocation();
+  const isZhCN = utils.isZhCN(pathname);
   const { isMobile } = useContext(SiteContext);
-  const { styles } = useStyle();
+  const colSpan = isMobile ? 24 : 8;
 
-  const list = Array(3).fill(1);
-
-  return isMobile ? (
-    <Carousel className={styles.carousel}>
-      {list.map((_, index) => (
-        <div key={index} className={styles.itemBase}>
-          <Skeleton active style={{ padding: '0 24px' }} />
-        </div>
-      ))}
-    </Carousel>
-  ) : (
-    <div className={styles.container}>
-      {list.map((_, index) => (
-        <div key={index} className={styles.itemBase}>
-          <Skeleton active />
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const BannerRecommends: React.FC = () => {
-  const { styles } = useStyle();
-  const [, lang] = useLocale();
-  const { isMobile } = React.useContext(SiteContext);
-  const data = useSiteData();
-  const extras = data?.extras?.[lang];
-  const icons = data?.icons || [];
-  const first3 =
-    !extras || extras.length === 0 ? Array(3).fill(null) : extras.slice(0, 3);
-
-  if (!data) {
-    return <BannerRecommendsFallback />;
-  }
-
-  if (isMobile) {
-    return (
-      <Carousel className={styles.carousel}>
-        {first3.map((extra, index) => (
-          <div key={index}>
-            <RecommendItem
-              extra={extra}
-              index={index}
-              icons={icons}
-              className={styles.sliderItem}
-            />
-          </div>
-        ))}
-      </Carousel>
-    );
-  }
+  const MAINLY_LIST = [
+    {
+      img: '🆕',
+      key: 'values',
+      path: utils.getLocalizedPathname('/docs/spec/values/', isZhCN, search),
+    },
+    {
+      img: '🦋',
+      key: 'guide',
+      path: utils.getLocalizedPathname('/docs/spec/colors/', isZhCN, search),
+    },
+    {
+      img: '🛠️',
+      key: 'lib',
+      path: utils.getLocalizedPathname(
+        '/docs/react/introduce/',
+        isZhCN,
+        search,
+      ),
+    },
+    {
+      img: '🔩',
+      key: 'theme',
+      path: utils.getLocalizedPathname('/docs/spec/values/', isZhCN, search),
+    },
+    {
+      img: '🔗',
+      key: 'file',
+      path: utils.getLocalizedPathname('/docs/spec/colors/', isZhCN, search),
+    },
+    {
+      img: '🔑',
+      key: 'route',
+      path: utils.getLocalizedPathname(
+        '/docs/react/introduce/',
+        isZhCN,
+        search,
+      ),
+    },
+  ];
 
   return (
-    <div className={styles.container}>
-      {first3.map((extra, index) => (
-        <RecommendItem
-          extra={extra}
-          index={index}
-          icons={icons}
-          className={styles.cardItem}
-          key={index}
-        />
-      ))}
-    </div>
+    <Row gutter={[token.marginXL, token.marginXL]}>
+      {MAINLY_LIST.map(({ img, key, path }, index) => {
+        const title = locale[key as keyof typeof locale];
+        const desc = locale[`${key}Desc` as keyof typeof locale];
+
+        return (
+          <Col key={index} span={colSpan}>
+            <Link to={path}>
+              <div className={styles.cardMini}>
+                <div className='text-icon'>{img}</div>
+
+                <Typography.Title
+                  level={5}
+                  style={{
+                    marginTop: token.margin,
+                    marginBottom: token.marginXS,
+                  }}
+                >
+                  {title}
+                </Typography.Title>
+                <Typography.Paragraph ellipsis={{rows:3,tooltip:{title:desc}}} type="secondary" style={{ margin: 0 }}>
+                  {desc}
+                </Typography.Paragraph>
+              </div>
+            </Link>
+          </Col>
+        );
+      })}
+
+
+    </Row>
   );
 };
 
-export default BannerRecommends;
+export default DesignFramework;

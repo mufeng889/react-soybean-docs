@@ -22,7 +22,7 @@ const locales = {
   en: {
     slogan:
       'Based on React18,React-Router-Dom V6,Vite5,TypeScript, and UnoCSS',
-    subheading:'A fresh and elegant middle and back office management template in line with Ant Design design philosophy',
+    subheading:'A fresh and elegant admin template that aligns with the Ant Design philosophy.',
     start: 'Getting Started',
     designLanguage: 'Design Language',
   },
@@ -46,7 +46,6 @@ const useStyle = () => {
 
     return {
       holder: css`
-        height: 640px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -68,6 +67,7 @@ const useStyle = () => {
       typography: css`
         text-align: center;
         position: relative;
+        margin-top:60px;
         z-index: 1;
         padding-inline: ${token.paddingXL}px;
         text-shadow: ${new Array(5)
@@ -101,7 +101,7 @@ const useStyle = () => {
         position: relative;
         width: 100%;
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 0 auto 40px;
         z-index: 1;
       `,
       btnWrap: css`
@@ -166,7 +166,7 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
         <Flex gap="middle" className={styles.btnWrap}>
           <Link
             to={utils.getLocalizedPathname(
-              '/components/overview/',
+              '/docs/guide/quick-start',
               isZhCN,
               search,
             )}

@@ -1,6 +1,6 @@
 ---
 group: 主题
-order: 1
+order: 2
 title: 配置
 ---
 
@@ -11,8 +11,6 @@ title: 配置
 :::info{title=代码位置}
 src/typings/app.d.ts
 :::
-
-
 
 ## 初始化配置
 
@@ -40,9 +38,7 @@ export const overrideThemeSettings: Partial<App.Theme.ThemeSetting> = {
 src/theme/settings.ts
 :::
 
-
 ---
-
 
 ## 环境说明<Badge type="warning">注意</Badge>
 

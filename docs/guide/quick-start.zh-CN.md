@@ -16,9 +16,7 @@ title: 快速开始
 - **NodeJS**: >=18.12.0，推荐 18.19.0 或更高。[安装教程](../tutorial/nodejs.md)
 - **pnpm**: >= 8.7.0，推荐最新版本。
 
-
 ---
-
 
 ## VSCode插件
 
@@ -44,7 +42,6 @@ title: 快速开始
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - 代码格式化插件
 - [UnoCSS](https://marketplace.visualstudio.com/items?itemName=antfu.unocss) - unocss 写法提示插件
 
-
 ## 代码获取
 
 ### 从 GitHub 获取代码
@@ -61,7 +58,7 @@ git clone https://github.com/mufeng889/react-soybean-admin.git
 git clone https://gitee.com/honghuangdc/soybean-admin.git
 ``` -->
 
-::: warning 注意
+:::warning{title=注意}
 最新版本的代码以 github 为准。
 :::
 
@@ -72,8 +69,6 @@ git clone https://gitee.com/honghuangdc/soybean-admin.git
 ```bash
 pnpm i
 ```
-
-
 
 ## npm scripts
 
@@ -110,148 +105,622 @@ pnpm i
 
 ## 目录说明
 
-```
-soybean-admin
-├── .vscode                        //vscode插件和设置
-│   ├── extensions.json            //vscode推荐的插件
-│   ├── launch.json                //debug配置文件(debug React 和 TS)
-│   └── settings.json              //vscode配置(在该项目中生效，可以复制到用户配置文件中)
-├── build                          //vite构建相关配置和插件
-│   ├── config                     //构建打包配置
-│   │   └── proxy.ts               //网络请求代理
-│   └── plugins                    //构建插件
-│       ├── index.ts               //插件汇总
-│       ├── router.ts              //elegant-router插件
-│       ├── unocss.ts              //unocss插件
-│       └── unplugin.ts            //自动导入UI组件、自动解析iconify图标、自动解析本地svg作为图标
-├── packages                       //子项目
-│   ├── axios                      //网络请求封装
-│   ├── color-palette              //颜色调色板
-│   ├── hooks                      //组合式函数hooks
-│   ├── materials                  //组件物料
-│   ├── ofetch                     //网络请求封装
-│   ├── scripts                    //脚本
-│   ├── uno-preset                 //uno-preset配置
-│   └── utils                      //工具函数
-├── public                         //公共目录(文件夹里面的资源打包后会在根目录下)
-│   └── favicon.svg                //网站标签图标
-├── src
-│   ├── assets                     //静态资源
-│   │   ├── imgs                   //图片
-│   │   └── svg-icon               //本地svg图标
-│   ├── components                 //全局组件
-│   │   ├── advanced               //高级组件
-│   │   ├── common                 //公共组件
-│   │   └── custom                 //自定义组件
-│   ├── constants                  //常量
-│   │   ├── app.ts                 //app常量
-│   │   ├── business.ts            //业务常量
-│   │   ├── common.ts              //通用常量
-│   │   └── reg.ts                 //正则常量
-│   ├── enums                      //枚举
-│   ├── hooks                      //组合式的函数hooks
-│   │   ├── business               //业务hooks
-│   │   │   ├── auth               //用户权限
-│   │   │   └── captcha            //验证码
-│   │   └── common                 //通用hooks
-│   │       ├── echarts            //echarts
-│   │       ├── form               //表单
-│   │       ├── icon               //图标
-│   │       ├── router             //路由
-│   │       └── table              //表格
-│   ├── layouts                    //布局组件
-│   │   ├── base-layout            //基本布局(包含全局头部、多页签、侧边栏、底部等公共部分)
-│   │   ├── blank-layout           //空白布局组件(单个页面)
-│   │   ├── context                //布局组件的上下文状态
-│   │   ├── hooks                  //布局组件的hooks
-│   │   └── modules                //布局组件模块
-│   │       ├── global-breadcrumb  //全局面包屑
-│   │       ├── global-content     //全局主体内容
-│   │       ├── global-footer      //全局底部
-│   │       ├── global-header      //全局头部
-│   │       ├── global-logo        //全局Logo
-│   │       ├── global-menu        //全局菜单
-│   │       ├── global-search      //全局搜索
-│   │       ├── global-sider       //全局侧边栏
-│   │       ├── global-tab         //全局标签页
-│   │       └── theme-drawer       //主题抽屉
-│   ├── locales                //国际化配置
-│   │   ├── langs              //语言文件
-│   │   ├── dayjs.ts           //dayjs的国际化配置
-│   │   ├── locale.ts          //语言文件汇总
-│   │   └── naive.ts           //NaiveUI的国际化配置
-│   ├── plugins                //插件
-│   │   ├── assets.ts          //各种依赖的静态资源导入(css、scss等)
-│   │   ├── dayjs.ts           //dayjs插件
-│   │   ├── iconify.ts         //iconify插件
-│   │   ├── loading.ts         //全局初始化时的加载插件
-│   │   └── nprogress.ts       //顶部加载条nprogress插件
-│   ├── router                 //react路由
-│   │   ├── elegant            //elegant-router插件生成的路由声明、导入和转换等文件
-│   │   ├── guard              //路由守卫
-│   │   ├── routes             //路由声明入口
-│   │   │   ├── builtin        //系统内置路由 根路由和未找到路由
-│   │   │   └── index          //前端静态路由创建的入口
-│   │   └── index.ts           //路由插件入口
-│   ├── service                //网络请求
-│   │   ├── api                //接口api
-│   │   └── request            //封装的请求函数
-│   ├── store                  //pinia状态管理
-│   │   ├── modules            //状态管理划分的模块
-│   │   │   ├── app            //app状态(页面重载、菜单折叠、项目配置的抽屉)
-│   │   │   ├── auth           //auth状态(用户信息、用户权益)
-│   │   │   ├── route          //route状态(动态路由、菜单、路由缓存)
-│   │   │   ├── tab            //tab状态(多页签、缓存页面的滚动位置)
-│   │   │   └── theme          //theme状态(项目主题配置)
-│   │   └── plugins            //状态管理插件
-│   ├── styles                 //全局样式
-│   │   ├── css                //css
-│   │   └── scss               //scss
-│   ├── theme                  //主题配置
-│   │   ├── settings.ts        //主题默认配置及覆盖配置
-│   │   └── vars.ts            //主题token对应的css变量
-│   ├── typings                //TS类型声明文件(*.d.ts)
-│   │   ├── api.d.ts           //请求接口返回的数据的类型声明
-│   │   ├── app.d.ts           //应用相关的类型声明
-│   │   ├── common.d.ts        //通用类型声明
-│   │   ├── components.d.ts    //自动导入的组件的类型声明
-│   │   ├── elegant-router.d.ts//插件elegant-router生成的路由声明
-│   │   ├── env.d.ts           //react路由描述和请求环境相关的类型声明
-│   │   ├── global.d.ts        //全局通用类型
-│   │   ├── naive-ui.d.ts      //NaiveUI类型
-│   │   ├── router.d.ts        //Vue的路由描述的类型声明
-│   │   ├── storage.d.ts       //本地缓存的数据类型
-│   │   └── union-key.d.ts     //联合类型
-│   ├── utils                  //全局工具函数(纯函数，不含状态)
-│   │   ├── common             //通用工具函数
-│   │   ├── icon               //图标相关工具函数
-│   │   ├── service            //请求服务配置相关的工具函数
-│   │   └── storage            //存储相关工具函数
-│   ├── views                  //页面
-│   │   ├── _builtin           //系统内置页面：登录、异常页等
-│   │   ├── about              //关于
-│   │   ├── function           //功能
-│   │   ├── home               //首页
-│   │   ├── manage             //系统管理
-│   │   ├── multi-menu         //多级菜单
-│   │   └── user-center        //用户中心
-│   ├── App.tsx                //React文件入口
-│   └── main.tsx               //项目入口TS文件
-├── .editorconfig              //统一编辑器配置
-├── .env                       //环境文件
-├── .env.prod                  //生产环境的环境文件
-├── .env.test                  //测试环境的环境文件
-├── .gitattributes             //git属性配置
-├── .gitignore                 //忽略git提交的配置文件
-├── .npmrc                     //npm配置
-├── CHANGELOG.md               //项目更新日志
-├── eslint.config.js           //eslint flat配置文件
-├── index.html                 //html文件
-├── package.json               //npm依赖描述文件
-├── pnpm-lock.yaml             //npm包管理器pnpm依赖锁定文件
-├── README.md                  //项目介绍文档
-├── README.zh-CN.md            //项目介绍文档(中文)
-├── tsconfig.json              //TS配置
-├── uno.config.ts              //原子css框架unocss配置
-└── vite.config.ts             //vite配置
-```
+<Tree>
+  <ul>
+    <li>
+      .vscode
+      <small>vscode插件和设置</small>
+      <ul>
+        <li>
+          extensions.json
+          <small>vscode推荐的插件</small>
+        </li>
+        <li>
+          launch.json
+          <small>debug配置文件(debug React 和 TS)</small>
+        </li>
+        <li>
+          settings.json
+          <small>vscode配置(在该项目中生效，可以复制到用户配置文件中)</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      build
+      <small>vite构建相关配置和插件</small>
+      <ul>
+        <li>
+          config
+          <small>构建打包配置</small>
+          <ul>
+            <li>
+              proxy.ts
+              <small>网络请求代理</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          plugins
+          <small>构建插件</small>
+          <ul>
+            <li>
+              index.ts
+              <small>插件汇总</small>
+            </li>
+            <li>
+              router.ts
+              <small>elegant-router插件</small>
+            </li>
+            <li>
+              unocss.ts
+              <small>unocss插件</small>
+            </li>
+            <li>
+              unplugin.ts
+              <small>自动导入UI组件、自动解析iconify图标、自动解析本地svg作为图标</small>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      packages
+      <small>子项目</small>
+      <ul>
+        <li>
+          axios
+          <small>网络请求封装</small>
+        </li>
+        <li>
+          color-palette
+          <small>颜色调色板</small>
+        </li>
+        <li>
+          hooks
+          <small>组合式函数hooks</small>
+        </li>
+        <li>
+          materials
+          <small>组件物料</small>
+        </li>
+        <li>
+          ofetch
+          <small>网络请求封装</small>
+        </li>
+        <li>
+          scripts
+          <small>脚本</small>
+        </li>
+        <li>
+          uno-preset
+          <small>uno-preset配置</small>
+        </li>
+        <li>
+          utils
+          <small>工具函数</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      public
+      <small>公共目录(文件夹里面的资源打包后会在根目录下)</small>
+      <ul>
+        <li>
+          favicon.svg
+          <small>网站标签图标</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      src
+      <ul>
+        <li>
+          assets
+          <small>静态资源</small>
+          <ul>
+            <li>
+              imgs
+              <small>图片</small>
+            </li>
+            <li>
+              svg-icon
+              <small>本地svg图标</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          components
+          <small>全局组件</small>
+          <ul>
+            <li>
+              advanced
+              <small>高级组件</small>
+            </li>
+            <li>
+              common
+              <small>公共组件</small>
+            </li>
+            <li>
+              custom
+              <small>自定义组件</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          constants
+          <small>常量</small>
+          <ul>
+            <li>
+              app.ts
+              <small>app常量</small>
+            </li>
+            <li>
+              business.ts
+              <small>业务常量</small>
+            </li>
+            <li>
+              common.ts
+              <small>通用常量</small>
+            </li>
+            <li>
+              reg.ts
+              <small>正则常量</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          enums
+          <small>枚举</small>
+        </li>
+        <li>
+          hooks
+          <small>组合式的函数hooks</small>
+          <ul>
+            <li>
+              business
+              <small>业务hooks</small>
+              <ul>
+                <li>
+                  auth
+                  <small>用户权限</small>
+                </li>
+                <li>
+                  captcha
+                  <small>验证码</small>
+                </li>
+              </ul>
+            </li>
+            <li>
+              common
+              <small>通用hooks</small>
+              <ul>
+                <li>
+                  echarts
+                  <small>echarts</small>
+                </li>
+                <li>
+                  form
+                  <small>表单</small>
+                </li>
+                <li>
+                  icon
+                  <small>图标</small>
+                </li>
+                <li>
+                  router
+                  <small>路由</small>
+                </li>
+                <li>
+                  table
+                  <small>表格</small>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          layouts
+          <small>布局组件</small>
+          <ul>
+            <li>
+              base-layout
+              <small>基本布局(包含全局头部、多页签、侧边栏、底部等公共部分)</small>
+            </li>
+            <li>
+              blank-layout
+              <small>空白布局组件(单个页面)</small>
+            </li>
+            <li>
+              hooks
+              <small>布局组件的hooks</small>
+            </li>
+            <li>
+              modules
+              <small>布局组件模块</small>
+              <ul>
+                <li>
+                  global-breadcrumb
+                  <small>全局面包屑</small>
+                </li>
+                <li>
+                  global-content
+                  <small>全局主体内容</small>
+                </li>
+                <li>
+                  global-footer
+                  <small>全局底部</small>
+                </li>
+                <li>
+                  global-header
+                  <small>全局头部</small>
+                </li>
+                <li>
+                  global-logo
+                  <small>全局Logo</small>
+                </li>
+                <li>
+                  global-menu
+                  <small>全局菜单</small>
+                </li>
+                <li>
+                  global-search
+                  <small>全局搜索</small>
+                </li>
+                <li>
+                  global-sider
+                  <small>全局侧边栏</small>
+                </li>
+                <li>
+                  global-tab
+                  <small>全局标签页</small>
+                </li>
+                <li>
+                  theme-drawer
+                  <small>主题抽屉</small>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          locales
+          <small>国际化配置</small>
+          <ul>
+            <li>
+              langs
+              <small>语言文件</small>
+            </li>
+            <li>
+              dayjs.ts
+              <small>dayjs的国际化配置</small>
+            </li>
+            <li>
+              locale.ts
+              <small>语言文件汇总</small>
+            </li>
+            <li>
+              antd.ts
+              <small>Ant Design的国际化配置</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          plugins
+          <small>插件</small>
+          <ul>
+            <li>
+              assets.ts
+              <small>各种依赖的静态资源导入(css、scss等)</small>
+            </li>
+            <li>
+              dayjs.ts
+              <small>dayjs插件</small>
+            </li>
+            <li>
+              iconify.ts
+              <small>iconify插件</small>
+            </li>
+            <li>
+              loading.ts
+              <small>全局初始化时的加载插件</small>
+            </li>
+            <li>
+              nprogress.ts
+              <small>顶部加载条nprogress插件</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          router
+          <small>react路由</small>
+          <ul>
+            <li>
+              elegant
+              <small>elegant-router插件生成的路由声明、导入和转换等文件</small>
+            </li>
+            <li>
+              guard
+              <small>路由守卫</small>
+            </li>
+            <li>
+              routes
+              <small>路由声明入口</small>
+              <ul>
+                <li>
+                  builtin
+                  <small>系统内置路由 根路由和未找到路由</small>
+                </li>
+                <li>
+                  index
+                  <small>前端静态路由创建的入口</small>
+                </li>
+              </ul>
+            </li>
+            <li>
+              index.ts
+              <small>路由插件入口</small>
+            </li>
+          </ul>
+        </li>
+     <li>
+      service
+      <small>网络请求</small>
+      <ul>
+        <li>
+          api
+          <small>接口api</small>
+        </li>
+        <li>
+          request
+          <small>封装的请求函数</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      store
+      <small>pinia状态管理</small>
+      <ul>
+        <li>
+          modules
+          <small>状态管理划分的模块</small>
+          <ul>
+            <li>
+              app
+              <small>app状态(页面重载、菜单折叠、项目配置的抽屉)</small>
+            </li>
+            <li>
+              auth
+              <small>auth状态(用户信息、用户权益)</small>
+            </li>
+            <li>
+              route
+              <small>route状态(动态路由、菜单、路由缓存)</small>
+            </li>
+            <li>
+              tab
+              <small>tab状态(多页签、缓存页面的滚动位置)</small>
+            </li>
+            <li>
+              theme
+              <small>theme状态(项目主题配置)</small>
+            </li>
+          </ul>
+        </li>
+        <li>
+          plugins
+          <small>状态管理插件</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      styles
+      <small>全局样式</small>
+      <ul>
+        <li>
+          css
+          <small>css</small>
+        </li>
+        <li>
+          scss
+          <small>scss</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      theme
+      <small>主题配置</small>
+      <ul>
+        <li>
+          settings.ts
+          <small>主题默认配置及覆盖配置</small>
+        </li>
+        <li>
+          vars.ts
+          <small>主题token对应的css变量</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      types
+      <small>TS类型声明文件(*.d.ts)</small>
+      <ul>
+        <li>
+          api.d.ts
+          <small>请求接口返回的数据的类型声明</small>
+        </li>
+        <li>
+          app.d.ts
+          <small>应用相关的类型声明</small>
+        </li>
+        <li>
+          common.d.ts
+          <small>通用类型声明</small>
+        </li>
+        <li>
+          components.d.ts
+          <small>自动导入的组件的类型声明</small>
+        </li>
+        <li>
+          elegant-router.d.ts
+          <small>插件elegant-router生成的路由声明</small>
+        </li>
+        <li>
+          env.d.ts
+          <small>react路由描述和请求环境相关的类型声明</small>
+        </li>
+        <li>
+          global.d.ts
+          <small>全局通用类型</small>
+        </li>
+        <li>
+          antd.d.ts
+          <small>Ant Design类型</small>
+        </li>
+        <li>
+          router.d.ts
+          <small>Vue的路由描述的类型声明</small>
+        </li>
+        <li>
+          storage.d.ts
+          <small>本地缓存的数据类型</small>
+        </li>
+        <li>
+          union-key.d.ts
+          <small>联合类型</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      utils
+      <small>全局工具函数(纯函数，不含状态)</small>
+      <ul>
+        <li>
+          common
+          <small>通用工具函数</small>
+        </li>
+        <li>
+          icon
+          <small>图标相关工具函数</small>
+        </li>
+        <li>
+          service
+          <small>请求服务配置相关的工具函数</small>
+        </li>
+        <li>
+          storage
+          <small>存储相关工具函数</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      pages
+      <small>页面</small>
+      <ul>
+        <li>
+          _builtin
+          <small>系统内置页面：登录、异常页等</small>
+        </li>
+        <li>
+          about
+          <small>关于</small>
+        </li>
+        <li>
+          function
+          <small>功能</small>
+        </li>
+        <li>
+          home
+          <small>首页</small>
+        </li>
+        <li>
+          manage
+          <small>系统管理</small>
+        </li>
+        <li>
+          multi-menu
+          <small>多级菜单</small>
+        </li>
+        <li>
+          user-center
+          <small>用户中心</small>
+        </li>
+      </ul>
+    </li>
+    <li>
+      App.tsx
+      <small>React文件入口</small>
+    </li>
+    <li>
+      main.tsx
+      <small>项目入口TS文件</small>
+    </li>
+</ul>
+  <li>
+      .editorconfig
+      <small>统一编辑器配置</small>
+    </li>
+    <li>
+      .env
+      <small>环境文件</small>
+    </li>
+    <li>
+      .env.prod
+      <small>生产环境的环境文件</small>
+    </li>
+    <li>
+      .env.test
+      <small>测试环境的环境文件</small>
+    </li>
+    <li>
+      .gitattributes
+      <small>git属性配置</small>
+    </li>
+    <li>
+      .gitignore
+      <small>忽略git提交的配置文件</small>
+    </li>
+    <li>
+      .npmrc
+      <small>npm配置</small>
+    </li>
+    <li>
+      CHANGELOG.md
+      <small>项目更新日志</small>
+    </li>
+    <li>
+      eslint.config.js
+      <small>eslint flat配置文件</small>
+    </li>
+    <li>
+      index.html
+      <small>html文件</small>
+    </li>
+    <li>
+      package.json
+      <small>npm依赖描述文件</small>
+    </li>
+    <li>
+      pnpm-lock.yaml
+      <small>npm包管理器pnpm依赖锁定文件</small>
+    </li>
+    <li>
+      README.md
+      <small>项目介绍文档</small>
+    </li>
+    <li>
+      README.zh-CN.md
+      <small>项目介绍文档(中文)</small>
+    </li>
+    <li>
+      tsconfig.json
+      <small>TS配置</small>
+    </li>
+    <li>
+      uno.config.ts
+      <small>原子css框架unocss配置</small>
+    </li>
+    <li>
+      vite.config.ts
+      <small>vite配置</small>
+    </li>   
+</Tree>
