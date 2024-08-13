@@ -1,10 +1,11 @@
 ---
-group: 主题
+
+group: Themes
 order: 3
-title: 主题 tokens
+title: Theme Tokens
 ---
 
-## 类型定义
+## Type Definition
 
 ```ts
 type ThemeToken = {
@@ -17,15 +18,15 @@ type ThemeToken = {
 };
 ```
 
-:::info{title=代码位置}
+:::info{title=Code Location}
 src/types/app.d.ts
 :::
 
 ---
 
-## 基于 tokens 的 css 变量
+## CSS Variables Based on Tokens
 
-初始化时会在 html 上生成一些 css 变量，这些 css 变量是基于主题 tokens 产出的
+During initialization, some CSS variables will be generated on the HTML element. These CSS variables are derived from theme tokens.
 
 ```ts
 /** Theme vars */
@@ -46,13 +47,13 @@ export const themeVars: App.Theme.ThemeToken = {
 };
 ```
 
-:::info{title=代码位置}
+:::info{title=Code Location}
 src/theme/vars.ts
 :::
 
 --- 
 
-## tokens 初始化
+## Tokens Initialization
 
 ```ts
 /**
@@ -98,6 +99,6 @@ export function createThemeToken(colors: App.Theme.ThemeColor) {
 }
 ```
 
-:::info{title=代码位置}
+:::info{title=Code Location}
 src/store/slice/theme/shared.ts
 :::

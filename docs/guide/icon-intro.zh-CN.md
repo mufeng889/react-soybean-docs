@@ -12,7 +12,6 @@ title: 概述
 - [iconify](https://github.com/iconify/iconify)
 - [Journey with Icons Continues](https://antfu.me/posts/journey-with-icons-continues)
 
-
 ## 本地 svg 图标渲染原理
 
 通过 `unplugin-icons` 插件 与 `vite-plugin-svg-icons` 插件，将本地 svg 文件转换成 react 组件

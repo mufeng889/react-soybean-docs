@@ -16,9 +16,7 @@ console.log(localIconPath);
 export default defineConfig({
   outputPath: 'docs-dist',
   resolve: {
-    docDirs: [{ type: 'doc', dir: 'docs' }],
-    atomDirs: [{ type: 'component', dir: 'components' }],
-    codeBlockMode: 'passive'
+    docDirs: [{ type: 'doc', dir: 'docs' }]
   },
   locales: [
     { id: 'en-US', name: 'English', suffix: '' },

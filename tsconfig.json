@@ -29,6 +29,6 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "include": [".dumirc.ts", "src/**/*", ".dumi/**/*", "types/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [".dumirc.ts", "**/*"],
+  "exclude": ["dist"]
 }

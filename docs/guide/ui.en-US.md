@@ -1,17 +1,16 @@
 ---
-group: 主题
+group: Themes
 order: 5
-title: UI 主题
+title: UI Theme
 ---
 
+## Ant Design Theme Configuration
 
-## Ant Design 主题配置
-
-**根据主题颜色产出组件库的主题变量**
+**Generate theme variables for the component library based on theme colors**
 
 ```ts
 /**
- * Get antd theme
+ * Get Ant Design theme
  *
  * @param colors Theme colors
  * @param darkMode Is dark mode
@@ -54,13 +53,13 @@ function getAntdTheme(colors: App.Theme.ThemeColor, darkMode: boolean) {
 const antdTheme = getAntdTheme(colors, darkMode);
 ```
 
-:::info{title=代码位置}
+:::info{title=Code Location}
 src/store/modules/theme/shared.ts
 
 src/store/modules/theme/index.ts
 :::
 
-**应用主题变量**
+**Apply Theme Variables**
 
 ```ts
   <ConfigProvider
@@ -76,6 +75,6 @@ src/store/modules/theme/index.ts
     </ConfigProvider>
 ```
 
-:::info{title=代码位置}
+:::info{title=Code Location}
 src/App.tsx
 :::

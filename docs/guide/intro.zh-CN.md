@@ -6,12 +6,9 @@ title: 介绍
 
 [`React-Soybean`](https://github.com/mufeng889/react-soybean-admin) 是一个清新优雅、高颜值且功能强大的后台管理模板，基于最新的前端技术栈，包括 React18.3,React-Router-Dom V6,Redux/toolkit Vite5, TypeScript,和 UnoCSS。它内置了丰富的主题配置和组件，代码规范严谨，实现了自动化的文件路由系统。此外，它还采用了基于 ApiFox 的在线Mock数据方案。
 
-
 `React-Soybean` 为您提供了一站式的后台管理解决方案，无需额外配置，开箱即用。同样是一个快速学习前沿技术的最佳实践。
 
-
 `React-Soybean` 遵守Ant Design 的设计理念,编写的页面清新优雅,高颜值,相信你会喜欢它的布局设计的 。
-
 
 ---
 
@@ -111,5 +108,24 @@ title: 介绍
 - [SoybeanAdmin](https://github.com/honghuangdc/soybean-admin) 还在持续更新中，本项目欢迎您的参与，共同维护，逐步完善，将项目做得更强。项目采用 MIT 开源协议，本着一切免费的原则，原则上不会收取任何费用及版权，可以放心使用。
 - 如果你想加入我们，可以多提供一些好的建议或者提交 pr，我们会根据你的活跃度邀请你加入。
 
+---
 
+## 问题反馈
 
+- 如果在使用过程中发现任何问题、或者有改善建议，欢迎在 GitHub Issues 进行反馈：https://github.com/mufeng889/react-soybean-admin/issues
+
+- 或加入讨论群：
+
+  <div>
+  	<p>QQ交流群</p>
+    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/qq-soybean-admin-2.jpg" style="width:200px" />
+  </div>
+
+	<div>
+		<p>添加下面微信邀请进微信群</p>
+		<img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/wechat-soybeanjs.jpg" style="width:200px" />
+	</div>
+  <div>
+    <p>添加 Soybean 的微信，业务咨询、合作、项目架构、一对一指导等</p>
+    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/wechat-soybean.jpg" style="width:200px" />
+  </div>

@@ -12,7 +12,6 @@ title: Introduction
 
 ---
 
-
 ## Features
 
 - **Cutting-Edge Technology**: Built with the latest popular technology stack, including React 18.3, React-Router-Dom V6, Redux/toolkit, Vite 5, TypeScript, and UnoCSS.
@@ -83,3 +82,49 @@ This project is developed using Vue3, Vite, and TypeScript, with all code writte
 For local development, it is recommended to use `Chrome 100+`.
 
 Supports modern browsers, with no support for IE.
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png" alt="IE" width="24px" height="24px"  />](http://godban.github.io/browsers-support-badges/)IE | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt=" Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)Safari |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                                not support                                                                                                                |                                                                                          last 2 versions                                                                                          |                                                                                               last 2 versions                                                                                                |                                                                                             last 2 versions                                                                                              |                                                                                             last 2 versions                                                                                              |
+
+---
+
+### Team Philosophy
+
+- We warmly welcome everyone to engage in discussions and grow together.
+- We encourage active participation from all members and welcome your pull requests, even if it's just to correct a typo.
+- We invite all contributors to join us in building an outstanding front-end framework.
+
+---
+
+### How to Join Us
+
+- [SoybeanAdmin](https://github.com/honghuangdc/soybean-admin) is still being actively updated. We welcome your participation in maintaining and improving the project, making it stronger over time. The project is licensed under the MIT open-source license, following a principle of free use, with no fees or copyright concerns, so feel free to use it.
+- If you want to join us, you can contribute by offering good suggestions or submitting pull requests. We will invite you to join based on your level of activity.
+
+---
+
+### Issue Feedback
+
+- If you encounter any issues during use or have suggestions for improvement, please feel free to provide feedback through GitHub Issues: [https://github.com/mufeng889/react-soybean-admin/issues](https://github.com/mufeng889/react-soybean-admin/issues).
+- Or join our discussion group:
+
+  <div>
+   <p>QQ Group</p>
+    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/qq-soybean-admin-2.jpg" style="width:200px" />
+  </div>
+
+ <div>
+  <p>Add the following WeChat to invite to the WeChat group</p>
+  <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/wechat-soybeanjs.jpg" style="width:200px" />
+ </div>
+  <div>
+    <p>Add Soybean's WeChat for business consultation, cooperation, project architecture, one-on-one guidance, etc.</p>
+    <img src="https://soybeanjs-1300612522.cos.ap-guangzhou.myqcloud.com/uPic/wechat-soybean.jpg" style="width:200px" />
+  </div>
+
+---
+
+## License
+
+This project is based on the [MIT © 2021 Soybean](./LICENSE) protocol, for learning purposes only, please retain the author's copyright information for commercial use, the author does not guarantee and is not responsible for the software.

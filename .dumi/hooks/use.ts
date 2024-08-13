@@ -15,14 +15,14 @@ function use<T>(promise: PromiseLike<T>): T {
   }
   internal.status = 'pending';
   internal.then(
-    (result) => {
+    result => {
       internal.status = 'fulfilled';
       internal.value = result;
     },
-    (reason) => {
+    reason => {
       internal.status = 'rejected';
       internal.reason = reason;
-    },
+    }
   );
   throw internal;
 }

@@ -80,10 +80,8 @@
     "unplugin-auto-import": "^0.18.2",
     "unplugin-icons": "^0.19.2",
     "vanilla-tilt": "1.8.1",
-    "vite-plugin-remove-console": "^2.2.0",
     "vite-plugin-svg-icons": "^2.0.1"
   },
-
   "authors": [],
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]

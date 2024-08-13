@@ -5,13 +5,11 @@ import FetchCache from './cache';
 
 const cache = new FetchCache();
 
-const useFetch = <T>(
-  options: string | { request: () => PromiseLike<T>; key: string },
-) => {
+const useFetch = <T>(options: string | { request: () => PromiseLike<T>; key: string }) => {
   let request;
   let key;
   if (typeof options === 'string') {
-    request = () => fetch(options).then((res) => res.json());
+    request = () => fetch(options).then(res => res.json());
     key = options;
   } else {
     request = options.request;

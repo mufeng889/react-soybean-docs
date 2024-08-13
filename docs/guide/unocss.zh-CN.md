@@ -29,7 +29,7 @@ export default defineConfig<Theme>({
 
 ```ts
 export default defineConfig<Theme>({
-	presets: [presetUno({ dark: "class" })],
+presets: [presetUno({ dark: "class" })],
 });
 ```
 

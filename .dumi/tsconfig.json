@@ -1,33 +1,7 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "jsx": "react-jsx",
-    "lib": ["ESNext", "DOM"],
-    "useDefineForClassFields": true,
-    "baseUrl": "./",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "paths": {
-      "@@/*": [".dumi/tmp/*"],
-      "react-soybean-docs": ["src"],
-      "react-soybean-docs/*": ["src/*", "*"]
-    },
-    "resolveJsonModule": true,
-    "types": ["node", "unplugin-icons/types/react", "dumi"],
-    "allowImportingTsExtensions": true,
-    "allowJs": false,
-    /* Linting */
-    "strict": true,
-    "strictNullChecks": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "skipLibCheck": true
+    "resolveJsonModule": true
   },
-  "include": ["./**/*"]
+  "include": ["**/*", "../types/*.d.ts"]
 }

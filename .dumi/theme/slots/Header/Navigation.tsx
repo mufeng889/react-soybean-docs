@@ -12,18 +12,18 @@ import type { SharedProps } from './interface';
 // ============================= Theme =============================
 const locales = {
   cn: {
-    design: '指引',
-    development: '研发',
-    components: '组件',
-    resources: '资源',
-    blog: '博客',
+    guide: '指引',
+    route: '路由',
+    hook: 'hooks',
+    faq: '常见问题',
+    iteration: '迭代计划',
   },
   en: {
-    design: 'Guide',
-    development: 'Development',
-    components: 'Components',
-    resources: 'Resources',
-    blog: 'Blog',
+    guide: 'Guide',
+    route: 'Route',
+    hook: 'Hooks',
+    faq:'FAQ',
+    iteration: 'Iteration Plan',
   },
 };
 
@@ -143,7 +143,7 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
             search,
           )}
         >
-          {locale.design}
+          {locale.guide}
         </Link>
       ),
       key: '/guide/intro',
@@ -152,15 +152,15 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
       label: (
         <Link
           to={utils.getLocalizedPathname(
-            '/docs/react/introduce',
+            '/docs/route/intro/',
             isZhCN,
             search,
           )}
         >
-          {locale.development}
+          {locale.route}
         </Link>
       ),
-      key: 'docs/react',
+      key: '/docs/route',
     },
     {
       label: (
@@ -171,35 +171,33 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
             search,
           )}
         >
-          {locale.components}
+          {locale.hook}
         </Link>
       ),
       key: 'components',
     },
-    blogList.length
-      ? {
+
+ {
           label: (
             <Link
               to={utils.getLocalizedPathname(
-                blogList.sort((a, b) =>
-                  a.frontmatter?.date > b.frontmatter?.date ? -1 : 1,
-                )[0].link,
+              '/docs/faq/',
                 isZhCN,
                 search,
               )}
             >
-              {locale.blog}
+              {locale.faq}
             </Link>
           ),
-          key: 'docs/blog',
+          key: 'docs/faq',
         }
-      : null,
+      ,
     {
       label: (
         <Link
           to={utils.getLocalizedPathname('/docs/resources', isZhCN, search)}
         >
-          {locale.resources}
+          {locale.iteration}
         </Link>
       ),
       key: 'docs/resources',

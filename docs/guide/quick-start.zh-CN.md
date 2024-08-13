@@ -184,6 +184,10 @@ pnpm i
           <small>组件物料</small>
         </li>
         <li>
+          simple-router
+          <small>基于vue-router,简单的实现了部分vue-router的功能帮助vue的伙伴更好的上手react</small>
+        </li>
+        <li>
           ofetch
           <small>网络请求封装</small>
         </li>
@@ -288,6 +292,14 @@ pnpm i
                   captcha
                   <small>验证码</small>
                 </li>
+                 <li>
+                  useStore
+                  <small>访问redux的两个hooks</small>
+                </li>
+                   <li>
+            usePreferredColorScheme
+                  <small>监听系统主题</small>
+                </li>
               </ul>
             </li>
             <li>
@@ -306,6 +318,14 @@ pnpm i
                   icon
                   <small>图标</small>
                 </li>
+<li>
+  login
+  <small>Login</small>
+</li>
+<li>
+  menu
+  <small>Menu</small>
+</li>
                 <li>
                   router
                   <small>路由</small>
@@ -329,10 +349,6 @@ pnpm i
             <li>
               blank-layout
               <small>空白布局组件(单个页面)</small>
-            </li>
-            <li>
-              hooks
-              <small>布局组件的hooks</small>
             </li>
             <li>
               modules
@@ -478,10 +494,10 @@ pnpm i
     </li>
     <li>
       store
-      <small>pinia状态管理</small>
+      <small>redux状态管理</small>
       <ul>
         <li>
-          modules
+          slice
           <small>状态管理划分的模块</small>
           <ul>
             <li>
@@ -505,10 +521,6 @@ pnpm i
               <small>theme状态(项目主题配置)</small>
             </li>
           </ul>
-        </li>
-        <li>
-          plugins
-          <small>状态管理插件</small>
         </li>
       </ul>
     </li>
@@ -722,5 +734,6 @@ pnpm i
     <li>
       vite.config.ts
       <small>vite配置</small>
-    </li>   
+    </li> 
+      </ul>  
 </Tree>
