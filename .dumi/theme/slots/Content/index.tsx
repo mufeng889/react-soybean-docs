@@ -10,7 +10,7 @@ import type { DemoContextProps } from '../DemoContext';
 import DemoContext from '../DemoContext';
 import InViewSuspense from './InViewSuspense';
 
-const Contributors = React.lazy(() => import('./Contributors'));
+
 const DocAnchor = React.lazy(() => import('./DocAnchor'));
 const DocMeta = React.lazy(() => import('./DocMeta'));
 const Footer = React.lazy(() => import('../Footer'));
@@ -20,18 +20,9 @@ const ComponentChangelog = React.lazy(
 );
 const EditButton = React.lazy(() => import('../../common/EditButton'));
 
-const useStyle = createStyles(({ token, css }) => ({
+const useStyle = createStyles(({  css }) => ({
   articleWrapper: css`
     padding: 0 170px 32px 64px;
-    &.rtl {
-      padding: 0 64px 144px 170px;
-    }
-    @media only screen and (max-width: ${token.screenLG}px) {
-      &,
-      &.rtl {
-        padding: 0 ${token.paddingLG * 2}px;
-      }
-    }
   `,
 }));
 
@@ -58,6 +49,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
     () => ({ showDebug, setShowDebug, codeType, setCodeType }),
     [showDebug, codeType, debugDemos],
   );
+
 
 
 
@@ -91,6 +83,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
               )}
             </Flex>
           ) : null}
+
           <InViewSuspense fallback={null}>
             <DocMeta />
           </InViewSuspense>
@@ -115,11 +108,7 @@ const Content: React.FC<React.PropsWithChildren> = ({ children }) => {
             {children}
           </div>
 
-          <InViewSuspense
-            fallback={<div style={{ height: 50, marginTop: 120 }} />}
-          >
-            <Contributors filename={meta.frontmatter.filename} />
-          </InViewSuspense>
+
         </article>
         <InViewSuspense fallback={null}>
           <PrevAndNext  />

@@ -249,7 +249,7 @@ const Header: React.FC = () => {
 
   let menu = [
     navigationNode,
-    <ResourceLink/>,
+    <ResourceLink key="resource"/>,
     <SwitchBtn
       key="lang"
       onClick={onLangChange}
@@ -265,7 +265,7 @@ const Header: React.FC = () => {
      target="_blank"
      rel="noreferrer"
    >
-      <ButtonIcon tooltipContent="github" >
+      <ButtonIcon  tooltipContent="github" >
       {IconLocalGithub({fill:'var(--ant-color-text)',className:'w-20px h-22px'})}
             </ButtonIcon>
     </a>,
@@ -313,11 +313,11 @@ const Header: React.FC = () => {
       )}
 
       <Row style={{ flexFlow: "nowrap", height: 64 }}>
-        <Col {...colProps[0]}>
+        <Col key={1} {...colProps[0]}>
           <Logo {...sharedProps}  />
 
         </Col>
-        <Col {...colProps[1]}>
+        <Col key={2} {...colProps[1]}>
           <div className={styles.menuRow}>
             <DumiSearchBar />
 

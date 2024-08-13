@@ -51,17 +51,6 @@ const useStyle = createStyles(({ token, css }) => {
     `,
     articleWrapper: css`
       padding: 0 170px 32px 64px;
-
-      &.rtl {
-        padding: 0 64px 144px 170px;
-      }
-
-      @media only screen and (max-width: ${token.screenLG}px) {
-        &,
-        &.rtl {
-          padding: 0 ${token.paddingLG * 2}px;
-        }
-      }
     `,
   };
 });

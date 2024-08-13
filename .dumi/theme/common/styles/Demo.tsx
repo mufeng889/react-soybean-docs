@@ -235,7 +235,7 @@ const GlobalDemoStyles: React.FC = () => {
               background: ${token.colorBgContainer};
             }
 
-            &:not(:first-child) {
+            &:not(:first-of-type) {
               border-top: 1px dashed ${token.colorSplit};
             }
           }

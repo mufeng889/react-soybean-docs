@@ -296,7 +296,7 @@ const GlobalStyle: React.FC = () => {
               text-align: left;
               border: 1px solid ${token.colorSplit};
 
-              &:first-child {
+              &:first-of-type {
                 border-left: 1px solid ${token.colorSplit};
               }
 
@@ -342,7 +342,7 @@ const GlobalStyle: React.FC = () => {
 
             td {
               border-width: 1px 0;
-              &:first-child {
+              &:first-of-type {
                 width: 18%;
                 min-width: 58px;
                 color: ${token.colorText};
@@ -350,31 +350,31 @@ const GlobalStyle: React.FC = () => {
                 white-space: nowrap;
               }
 
-              &:nth-child(2) {
+              &:nth-of-type(2) {
                 min-width: 160px;
               }
 
-              &:nth-child(3) {
+              &:nth-of-type(3) {
                 width: 22%;
                 color: ${token.magenta7};
                 font-size: ${Math.max(token.fontSize - 1, 12)}px;
               }
 
-              &:nth-child(4) {
+              &:nth-of-type(4) {
                 width: 15%;
                 font-size: ${Math.max(token.fontSize - 1, 12)}px;
               }
 
-              &:nth-child(5) {
+              &:nth-of-type(5) {
                 width: 8%;
                 font-size: ${Math.max(token.fontSize - 1, 12)}px;
               }
 
-              &:nth-last-child(3):first-child {
+              &:nth-last-of-type(3):first-of-type {
                 width: 38%;
               }
 
-              &:nth-last-child(3):first-child ~ td:nth-last-child(2) {
+              &:nth-last-of-type(3):first-of-type ~ td:nth-last-of-type(2) {
                 width: 70%;
               }
             }
@@ -397,7 +397,7 @@ const GlobalStyle: React.FC = () => {
             padding: ${token.padding}px 0;
             background: ${demoGridColor};
 
-            &:nth-child(2n + 1) {
+            &:nth-of-type(2n + 1) {
               background: ${new TinyColor(demoGridColor)
                 .setAlpha(0.75)
                 .toHex8String()};

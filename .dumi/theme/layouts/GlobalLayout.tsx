@@ -19,11 +19,11 @@ import {
 import React, { Suspense, useCallback, useEffect } from 'react';
 import { DarkContext } from '../../hooks/useDark';
 import useLayoutState from '../../hooks/useLayoutState';
-import useLocation from '../../hooks/useLocation';
 import type { ThemeName } from '../common/ThemeSwitch';
 import SiteThemeProvider from '../SiteThemeProvider';
 import type { SiteContextProps } from '../slots/SiteContext';
 import SiteContext from '../slots/SiteContext';
+
 
 const ThemeSwitch = React.lazy(() => import('../common/ThemeSwitch'));
 
@@ -49,23 +49,20 @@ const getAlgorithm = (themes: ThemeName[] = []) =>
       if (theme === 'dark') {
         return antdTheme.darkAlgorithm;
       }
-      if (theme === 'compact') {
-        return antdTheme.compactAlgorithm;
-      }
+
       return null as unknown as MappingAlgorithm;
     })
     .filter(Boolean);
 
 const GlobalLayout: React.FC = () => {
   const outlet = useOutlet();
-  const { pathname } = useLocation();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [
     { theme = [], isMobile, bannerVisible = false },
     setSiteState,
   ] = useLayoutState<SiteState>({
     isMobile: false,
-
     theme: [],
     bannerVisible: false,
   });
@@ -80,13 +77,11 @@ const GlobalLayout: React.FC = () => {
       let nextSearchParams: URLSearchParams = searchParams;
       (Object.entries(props) as Entries<SiteContextProps>).forEach(
         ([key, value]) => {
-
           if (key === 'theme') {
             nextSearchParams = createSearchParams({
               ...nextSearchParams,
               theme: value.filter((t) => t !== 'light'),
             });
-
             document
               .querySelector('html')
               ?.setAttribute(
@@ -140,7 +135,7 @@ const GlobalLayout: React.FC = () => {
   const themeConfig = React.useMemo<ThemeConfig>(
     () => ({
       algorithm: getAlgorithm(theme),
-      token: { motion: !theme.includes('motion-off') },
+      token: { motion: true },
       cssVar: true,
       hashed: false,
     }),
@@ -186,25 +181,7 @@ const GlobalLayout: React.FC = () => {
     />
   ));
 
-  const demoPage = pathname.startsWith('/~demos');
 
-  // ============================ Render ============================
-  let content: React.ReactNode = outlet;
-
-  // Demo page should not contain App component
-  if (!demoPage) {
-    content = (
-      <App>
-        {outlet}
-        <Suspense>
-          <ThemeSwitch
-            value={theme}
-            onChange={(nextTheme) => updateSiteConfig({ theme: nextTheme })}
-          />
-        </Suspense>
-      </App>
-    );
-  }
 
   return (
     <DarkContext.Provider value={theme.includes('dark')}>
@@ -215,7 +192,15 @@ const GlobalLayout: React.FC = () => {
         <SiteContext.Provider value={siteContextValue}>
           <SiteThemeProvider theme={themeConfig}>
 
-              {content}
+          <App>
+        {outlet}
+        <Suspense>
+          <ThemeSwitch
+            value={theme}
+            onChange={(nextTheme) => updateSiteConfig({ theme: nextTheme })}
+          />
+        </Suspense>
+      </App>
 
           </SiteThemeProvider>
         </SiteContext.Provider>

@@ -2,14 +2,13 @@ import { MenuOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { createStyles, css } from 'antd-style';
-import { FormattedMessage, useFullSidebarData, useLocation } from 'dumi';
+import { FormattedMessage, useLocation } from 'dumi';
 import * as React from 'react';
 import useLocale from '../../../hooks/useLocale';
 import Link from '../../common/Link';
 import * as utils from '../../utils';
 import type { SharedProps } from './interface';
 
-// ============================= Theme =============================
 const locales = {
   cn: {
     guide: '指引',
@@ -83,9 +82,6 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
   } = props;
   const { pathname, search } = useLocation();
   const [locale] = useLocale(locales);
-
-  const sidebarData = useFullSidebarData();
-  const blogList = sidebarData['/docs/blog']?.[0]?.children || [];
 
   const { styles } = useStyle();
 

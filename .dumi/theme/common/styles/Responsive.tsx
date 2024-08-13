@@ -89,10 +89,6 @@ export default () => {
           .prev-next-nav {
             width: calc(100% - 32px);
             margin-inline-start: ${token.margin}px;
-            .ant-row-rtl & {
-              margin-inline-end: ${token.margin}px;
-              margin-inline-start: 64px;
-            }
           }
 
           .drawer {
@@ -303,7 +299,7 @@ export default () => {
               border-radius: ${token.borderRadiusSM}px;
               box-shadow: 0 8px 16px rgba(174, 185, 193, 0.3);
 
-              &:nth-child(2) {
+              &:nth-of-type(2) {
                 .page3-img-wrapper img {
                   display: block;
                   width: 70%;

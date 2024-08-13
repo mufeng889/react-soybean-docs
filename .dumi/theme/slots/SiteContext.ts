@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type ThemeName = 'light' | 'dark' | 'compact' | 'motion-off' | 'happy-work';
+export type ThemeName = 'light' | 'dark';
 
 export interface SiteContextProps {
   isMobile: boolean;
