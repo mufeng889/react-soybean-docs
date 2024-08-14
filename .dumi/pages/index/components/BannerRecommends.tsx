@@ -1,11 +1,10 @@
 import { Col, Row, Typography } from 'antd';
 import { createStyles, useTheme } from 'antd-style';
-import { Link, useLocation } from 'dumi';
 import React, { useContext } from 'react';
 import useDark from '../../../hooks/useDark';
 import useLocale from '../../../hooks/useLocale';
 import SiteContext from '../../../theme/slots/SiteContext';
-import * as utils from '../../../theme/utils';
+
 
 
 const locales = {
@@ -77,8 +76,8 @@ const DesignFramework: React.FC = () => {
   const [locale] = useLocale(locales);
   const token = useTheme();
   const { styles } = useStyle();
-  const { pathname, search } = useLocation();
-  const isZhCN = utils.isZhCN(pathname);
+
+
   const { isMobile } = useContext(SiteContext);
   const colSpan = isMobile ? 24 : 8;
 
@@ -86,52 +85,39 @@ const DesignFramework: React.FC = () => {
     {
       img: '🆕',
       key: 'values',
-      path: utils.getLocalizedPathname('/docs/spec/values/', isZhCN, search),
+
     },
     {
       img: '🦋',
       key: 'guide',
-      path: utils.getLocalizedPathname('/docs/spec/colors/', isZhCN, search),
     },
     {
       img: '🛠️',
       key: 'lib',
-      path: utils.getLocalizedPathname(
-        '/docs/react/introduce/',
-        isZhCN,
-        search,
-      ),
     },
     {
       img: '🔩',
       key: 'theme',
-      path: utils.getLocalizedPathname('/docs/spec/values/', isZhCN, search),
     },
     {
       img: '🔗',
       key: 'file',
-      path: utils.getLocalizedPathname('/docs/spec/colors/', isZhCN, search),
     },
     {
       img: '🔑',
       key: 'route',
-      path: utils.getLocalizedPathname(
-        '/docs/react/introduce/',
-        isZhCN,
-        search,
-      ),
     },
   ];
 
   return (
     <Row gutter={[token.marginXL, token.marginXL]}>
-      {MAINLY_LIST.map(({ img, key, path }, index) => {
+      {MAINLY_LIST.map(({ img, key }, index) => {
         const title = locale[key as keyof typeof locale];
         const desc = locale[`${key}Desc` as keyof typeof locale];
 
         return (
           <Col key={index} span={colSpan}>
-            <Link to={path}>
+
               <div className={styles.cardMini}>
                 <div className='text-icon'>{img}</div>
 
@@ -148,7 +134,6 @@ const DesignFramework: React.FC = () => {
                   {desc}
                 </Typography.Paragraph>
               </div>
-            </Link>
           </Col>
         );
       })}

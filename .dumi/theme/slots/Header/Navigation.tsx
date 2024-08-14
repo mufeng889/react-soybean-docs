@@ -162,7 +162,7 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
       label: (
         <Link
           to={utils.getLocalizedPathname(
-            '/components/overview/',
+            '/docs/hooks/use-table/',
             isZhCN,
             search,
           )}

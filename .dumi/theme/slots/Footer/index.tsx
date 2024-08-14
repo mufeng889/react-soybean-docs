@@ -68,35 +68,8 @@ const Footer = () => {
         openExternal: true,
       },
       {
-        title: 'Ant Design Pro',
-        url: 'https://pro.ant.design',
-        openExternal: true,
-      },
-      {
         title: 'Ant Design Pro Components',
         url: 'https://procomponents.ant.design',
-        openExternal: true,
-      },
-      {
-        title: 'Ant Design Mobile',
-        url: 'https://mobile.ant.design',
-        openExternal: true,
-      },
-      {
-        title: 'Ant Design Mini',
-        url: 'https://mini.ant.design',
-        openExternal: true,
-      },
-      {
-        title: 'Ant Design Landing',
-        description: <FormattedMessage id="app.footer.landing" />,
-        url: 'https://landing.ant.design',
-        openExternal: true,
-      },
-      {
-        title: 'Scaffolds',
-        description: <FormattedMessage id="app.footer.scaffolds" />,
-        url: 'https://scaffold.ant.design',
         openExternal: true,
       },
       {
@@ -124,12 +97,6 @@ const Footer = () => {
         openExternal: true,
       },
       {
-        title: 'Ant Motion',
-        description: <FormattedMessage id="app.footer.motion" />,
-        url: 'https://motion.ant.design',
-        openExternal: true,
-      },
-      {
         title: <FormattedMessage id="app.footer.chinamirror" />,
         url: 'https://ant-design.antgroup.com',
       },
@@ -143,7 +110,7 @@ const Footer = () => {
       bottom={
         <>
           <div style={{ opacity: '0.4' }}>
-            Made with <span style={{ color: '#fff' }}>❤️</span> by
+          Copyright © 2021 Soybean  Made with <span style={{ color: '#fff' }}>❤️</span> by
           </div>
           <div>Soybean</div>
         </>

@@ -26,7 +26,7 @@ const locales = {
       'Based on React18,React-Router-Dom V6,Vite5,TypeScript, and UnoCSS',
     subheading:'A fresh and elegant admin template that aligns with the Ant Design philosophy.',
     start: 'Getting Started',
-    designLanguage: 'Design Language',
+    designLanguage: 'Detail Intro',
   },
 };
 
@@ -182,15 +182,21 @@ const PreviewBanner: React.FC<React.PropsWithChildren> = (props) => {
           </Link>
           <Link
             to={utils.getLocalizedPathname(
-              '/docs/spec/introduce/',
+              '/docs/guide/intro/',
               isZhCN,
               search,
             )}
           >
             <Button  size="large">{locale.designLanguage}</Button>
           </Link>
-
+          <a
+     key="github"
+     href="https://github.com/mufeng889/react-soybean-admin.git"
+     target="_blank"
+     rel="noreferrer"
+   >
           <Button icon={IconLocalGithub({fill:'var(--ant-color-text)',className:'w-20px h-22px'})}  size="large">Github</Button>
+          </a>
         </Flex>
         <div className={styles.child}>{children}</div>
       </div>

@@ -6,17 +6,15 @@ import useLocale from '../../../hooks/useLocale';
 const locales = {
   cn: {
     link: '相关链接',
-    route: '路由',
-    hook: 'hooks',
-    faq: '常见问题',
-    iteration: '迭代计划',
+    preview: '在线预览',
+    repository: '仓库',
+    legacy: '旧版文档',
   },
   en: {
     link: 'Related Links',
-    route: 'Route',
-    hook: 'Hooks',
-    faq:'FAQ',
-    iteration: 'Iteration Plan',
+    preview: 'Live Preview',
+    repository: 'Repository',
+    legacy: 'Legacy Docs',
   },
 };
 
@@ -36,7 +34,7 @@ const ResourceLink = () => {
           href="https://react-soybean-admin.vercel.app/"
           target="_blank"
           rel="noreferrer">
-        在线预览
+        {locale.preview}
         </a>,
         },
         {
@@ -45,7 +43,7 @@ const ResourceLink = () => {
           href="https://github.com/mufeng889/react-soybean-admin.git"
           target="_blank"
           rel="noreferrer">
-         Github 仓库
+         Github {locale.repository}
         </a>,
         }
       ],
@@ -61,7 +59,7 @@ const ResourceLink = () => {
           href="https://naive.soybeanjs.cn"
           target="_blank"
           rel="noreferrer">
-       在线预览(NaiveUI)
+       {locale.preview}(NaiveUI)
         </a>,
         },
         {
@@ -70,7 +68,7 @@ const ResourceLink = () => {
           href="https://antd.soybeanjs.cn"
           target="_blank"
           rel="noreferrer">
-       在线预览(AntDesignVue)
+        {locale.preview}(AntDesignVue)
         </a>,
         },
         {
@@ -79,7 +77,7 @@ const ResourceLink = () => {
           href="https://github.com/soybeanjs/soybean-admin"
           target="_blank"
           rel="noreferrer">
-     Github 仓库
+     Github {locale.repository}
         </a>,
         },
         {
@@ -88,7 +86,7 @@ const ResourceLink = () => {
           href="https://gitee.com/honghuangdc/soybean-admin"
           target="_blank"
           rel="noreferrer">
-     Gitee 仓库
+     Gitee {locale.repository}
           </a>,
 
         },
@@ -98,7 +96,7 @@ const ResourceLink = () => {
           href="https://legacy-docs.soybeanjs.cn"
           target="_blank"
           rel="noreferrer">
-    旧版文档
+    {locale.legacy}
           </a>,
 
         }
