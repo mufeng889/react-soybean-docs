@@ -12,7 +12,7 @@ export default () => {
 }
 
 #nprogress .bar {
-  background: rgb(rgb(100, 108, 255));
+  background: rgb(100, 108, 255);
 
   position: fixed;
   z-index: 1031;
