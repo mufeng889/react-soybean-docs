@@ -191,12 +191,12 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
     {
       label: (
         <Link
-          to={utils.getLocalizedPathname('/docs/resources', isZhCN, search)}
+          to={utils.getLocalizedPathname('/docs/plan', isZhCN, search)}
         >
           {locale.iteration}
         </Link>
       ),
-      key: 'docs/resources',
+      key: 'docs/plan',
     },
     ...(additional ?? []),
   ].filter(Boolean);
