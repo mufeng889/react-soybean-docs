@@ -1,43 +1,21 @@
-# react-soybean-docs
+<div align="center">
+ <img src="./public/favicon.svg" width="160" />
+ <h1>SoybeanAdmin</h1>
+  <span><a href="./README.md">English</a> | 中文</span>
+</div>
 
-[![NPM version](https://img.shields.io/npm/v/react-soybean-docs.svg?style=flat)](https://npmjs.org/package/react-soybean-docs)
-[![NPM downloads](http://img.shields.io/npm/dm/react-soybean-docs.svg?style=flat)](https://npmjs.org/package/react-soybean-docs)
+[![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-A react library developed with dumi
+> [!NOTE]
+> If you think `React-Soybean-Admin` is helpful to you, or you like our project, please give us a ⭐️ on GitHub. Your support is the driving force for us to continue to improve and add new features! Thank you for your support!
 
-## Usage
+## Introduction
 
-TODO
+A nanny-level documentation that aligns with the design philosophy of Ant Design
 
-## Options
 
-TODO
+![](en.png)
 
-## Development
+## License
 
-```bash
-# install dependencies
-$ pnpm install
-
-# develop library by docs demo
-$ pnpm start
-
-# build library source code
-$ pnpm run build
-
-# build library source code in watch mode
-$ pnpm run build:watch
-
-# build docs
-$ pnpm run docs:build
-
-# Locally preview the production build.
-$ pnpm run docs:preview
-
-# check your project for potential problems
-$ pnpm run doctor
-```
-
-## LICENSE
-
-MIT
+This project is based on the [MIT © 2021 Soybean](./LICENSE) protocol, for learning purposes only, please retain the author's copyright information for commercial use, the author does not guarantee and is not responsible for the software.
