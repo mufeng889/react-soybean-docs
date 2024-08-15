@@ -94,26 +94,32 @@ title: useTableHook
   - 类型：数组
   - 说明：包含了列的检查信息。每个元素是一个对象，包含 `key`、`title` 和 `checked` 属性，分别代表列的键、标题和是否被选中。
 
-- `reloadColumns`:
+- `setColumnChecks`:
   - 类型：函数
-  - 说明：用于重新加载列。当调用这个函数时，会重新调用 `columns` 函数获取列，然后使用 `getColumnChecks` 和 `getColumns` 来确定哪些列应该被展示。
+  - 参数: columnChecks
+  - 说明：用于修改 `columnChecks`的选中状态，以及更新 `columns`的位置。
 
-- `getData`:
+- `run`:
   - 类型：函数
-  - 说明：用于获取数据。当调用这个函数时，会调用 `apiFn` 获取数据，然后使用 `transformer` 将响应转换为表格数据。
+  - 参数:boolean
+  - 说明：用于获取数据。当调用这个函数时,首先会根据表单规则校验数据，如果通过则会拿到表单参数和页码，会调用 `apiFn` 获取数据，然后使用 `transformer` 将响应转换为表格数据。
+  - 如果参数为true，则把页码为1
 
 - `searchParams`:
   - 类型：对象
   - 说明：包含了调用 `apiFn` 时的参数。
 
-- `updateSearchParams`:
-  - 类型：函数
-  - 说明：用于更新 `searchParams`。这个函数接收一个对象作为参数，该对象的属性会被合并到 `searchParams` 中。
+- `pagination`
+  - 类型：对象
+  - 说明：包含了分页信息。
 
-- `resetSearchParams`:
+- `reset`:
   - 类型：函数
-  - 说明：用于重置 `searchParams`。当调用这个函数时，`searchParams` 会被重置为 `apiParams`。
+  - 说明：用于重置 `searchParams`。当调用这个函数时，`searchParams` 会被重置为 `apiParams`,并且会自动发出一个请求。
 
+- `form`:
+  - 类型：antd的useForm的实例
+  - 说明：绑定到表单身上，用于控制表单。  
 
 ### 使用
 
@@ -123,16 +129,14 @@ title: useTableHook
 
 以下为直接在页面内使用 `useHookTable` 的简单示例，具体还得根据实际情况进行调整
 
-```vue
-<script setup lang="tsx">
-import { ref } from 'vue';
+```ts
 import { fetchGetUserList } from '@/service/api';
 import useHookTable from '@sa/hooks';
 
-const apiParams = ref({
+const apiParams = {
   current: 1,
   size: 10
-});
+};
 
 const columns = () => [
   {
@@ -161,8 +165,8 @@ const { loading, empty, data, getData } = useHookTable({
 });
 
 // 当需要获取数据时，例如在组件挂载完成后或者用户点击刷新按钮时，调用 getData 函数
-getData();
-</script>
+run();
+
 ```
 
 ## `useTable` 的介绍说明
@@ -171,7 +175,7 @@ getData();
 
 ### 配置项
 
-`useTable`函数接受一个配置对象，该对象的属性如下：
+`useTable`函数接受两个个配置对象，该对象的属性如下：
 
 - `apiFn`: 一个函数，用于获取表格数据的API函数。
 
@@ -188,7 +192,11 @@ getData();
   - `width`: 数字，列的宽度。
   - `minWidth`: 数字，列的最小宽度。
   - `render`: 函数，用于自定义渲染列的内容。
-  - 其他的配置项参考 `naive-ui` 文档。
+  - 其他的配置项参考 `Ant Design Table` 文档。
+
+#### 第二参数
+
+- 分页对象,用于覆盖默认的分页配置(详见[antd-pagination](https://ant-design.antgroup.com/components/pagination-cn))
 
 示例：
 
@@ -207,7 +215,7 @@ useTable({
     },
     // 更多列...
   ]
-});
+},{ showQuickJumper: true });
 ```
 
 ### 返回值
@@ -224,40 +232,34 @@ useTable({
 
 - `columnChecks`: 数组，表格列的选择状态。
 
-- `reloadColumns`: 函数，用于重新加载表格列。
-
 - `pagination`: 对象，表格的分页配置。
 
-- `mobilePagination`: 对象，移动设备上的表格分页配置。
+- `run`: 函数，用于获取表格数据。
 
-- `updatePagination`: 函数，用于更新表格的分页配置。
+- `form`: 对象，用于控制表单实例表单。
 
-- `getData`: 函数，用于获取表格数据。
+- `setColumnChecks`: 函数，用于重新加载表格列。
 
 - `searchParams`: 对象，用于搜索的参数。
 
-- `updateSearchParams`: 函数，用于更新搜索参数。
-
-- `resetSearchParams`: 函数，用于重置搜索参数。
+- `reset`: 函数，用于重置搜索参数。
 
 示例：
 
 ```typescript
 const {
   loading,
-  empty,
-  data,
-  columns,
-  columnChecks,
-  reloadColumns,
-  pagination,
-  mobilePagination,
-  updatePagination,
-  getData,
-  searchParams,
-  updateSearchParams,
-  resetSearchParams
-} = useTable(config);
+    empty,
+    data,
+    columns,
+    columnChecks,
+    pagination,
+    run,
+    setColumnChecks,
+    searchParams,
+    form,
+    reset
+} = useTable(config,pagination);
 ```
 
 ### 使用
@@ -346,6 +348,7 @@ const { data, loading, pagination } = useTable({
 在 `@/hooks/common/table` 中配置 `useTable` ，修改 `transformer` 函数以适配您的后端接口数据结构。<br />
 
 假设后端返回的数据为：
+
 ```json
 {
   "code": 200,
@@ -361,7 +364,9 @@ const { data, loading, pagination } = useTable({
     "total": 1
 }
 ```
+
 说明：
+
 - `records` 是表格数据
 - `current` 是当前页码
 - `size` 是每页条数
@@ -395,11 +400,9 @@ transformer: res => {
 
 `useTable` 返回的对象中包含了表格数据（`data`）、加载状态（`loading`）、分页信息（`pagination`）等，您可以直接在组件中使用这些数据和状态。
 
-```vue
-<script setup lang="ts">
+```ts
 import { useTable } from '@/hooks/common/table';
 import { fetchUsers } from '@/api/userApi';
-
 const { columns, columnChecks, data, loading, pagination, getData } = useTable({
   apiFn: fetchUsers,
   columns: () => [
@@ -416,25 +419,20 @@ const { columns, columnChecks, data, loading, pagination, getData } = useTable({
     // 其他内容
   ]
 });
-</script>
-
-<template>
+>
   <div>
-    <NButton @click="getData">获取数据</NButton>
-    <NDataTable
-      v-model:checked-row-keys="checkedRowKeys"
-      :columns="columns"
-      :data="data"
-      size="small"
-      :scroll-x="1088"
-      :loading="loading"
-      :row-key="row => row.id"
-      remote
-      :pagination="pagination"
-      class="sm:h-full"
+    <Button @click="getData">获取数据</Button>
+    <<Table
+          pagination={pagination}
+          rowKey="id"
+          scroll={scrollConfig}
+          rowSelection={rowSelection}
+          size="small"
+          loading={loading}
+          dataSource={data}
+          columns={columns}
     />
   </div>
-</template>
 ```
 
 #### 步骤 5: 处理分页和筛选
@@ -442,7 +440,7 @@ const { columns, columnChecks, data, loading, pagination, getData } = useTable({
 如果您的表格需要支持分页和筛选，您可以通过更新 `useTable` 配置对象中的 `apiParams` 来实现。`apiParams` 是一个响应式对象，您可以根据用户的操作动态更新它的值，`useTable` 会自动重新调用 `apiFn` 获取更新后的数据。
 
 ```javascript
-const { data, loading, pagination, updateSearchParams } = useTable({
+const { data, loading, pagination, run,form } = useTable({
   apiFn: fetchUsers,
   apiParams: reactive({ current: 1, size: 10, searchKey: '' }), // 初始参数
   column: () => [
@@ -451,12 +449,13 @@ const { data, loading, pagination, updateSearchParams } = useTable({
 });
 
 // 更新搜索参数示例
-function search(searchKey) {
-  updateSearchParams(params => {
-    params.searchKey = searchKey;
-    params.current = 1; // 重置为第一页
-  });
+function search() {
+   run()
 }
+
+ <Form
+    form={form}
+   />
 ```
 
 ## 常见场景示例

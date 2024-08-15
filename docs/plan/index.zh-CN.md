@@ -13,3 +13,5 @@ title: 目标
 4. 完善和优化`simple-router`的代码
 
 5. 完善`router`的文档
+
+6. 完善文档的页脚

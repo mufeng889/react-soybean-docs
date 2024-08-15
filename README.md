@@ -1,7 +1,7 @@
 <div align="center">
  <img src="./public/favicon.svg" width="160" />
  <h1>SoybeanAdmin</h1>
-  <span><a href="./README.md">English</a> | 中文</span>
+  <span>English | <a href="./README.zh_CN.md">中文</a></span>
 </div>
 
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
