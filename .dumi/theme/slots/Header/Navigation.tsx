@@ -101,7 +101,7 @@ const HeaderNavigation: React.FC<NavigationProps> = (props) => {
     {
       label: (
         <a
-          href="https://github.com/ant-design/ant-design"
+          href="https://github.com/mufeng889/react-soybean-admin.git"
           target="_blank"
           rel="noopener noreferrer"
         >

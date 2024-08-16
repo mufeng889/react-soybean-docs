@@ -3,6 +3,7 @@
   "app.footer.resources": "Ant Design Resources",
   "app.footer.umi": "React Application Framework",
   "app.footer.dumi": "Component doc generator",
+  "app.theme.switch.dark": "Dark theme",
   "app.footer.qiankun": "Micro-Frontends Framework",
   "app.footer.hooks": "React Hooks Library",
   "app.footer.chinamirror": "China Mirror 🇨🇳"

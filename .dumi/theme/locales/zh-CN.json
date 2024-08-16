@@ -5,5 +5,6 @@
   "app.footer.dumi": "组件/文档研发工具",
   "app.footer.qiankun": "微前端框架",
   "app.footer.hooks": "React Hooks 库",
+  "app.theme.switch.dark": "暗黑主题",
   "app.footer.chinamirror": "国内镜像站点 🇨🇳"
 }
