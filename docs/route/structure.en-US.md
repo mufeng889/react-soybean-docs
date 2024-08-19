@@ -1,5 +1,5 @@
 ---
-group: Routing  
+group: Elegant Router  
 order: 3  
 title: Routing Structure  
 

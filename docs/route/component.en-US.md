@@ -1,5 +1,5 @@
 ---
-group: Routing
+group: Elegant Router
 order: 4
 title: Routing Components
 ---

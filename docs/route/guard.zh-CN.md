@@ -1,5 +1,5 @@
 ---
-group: 路由
+group: Elegant Router
 order: 5
 title: 路由守卫
 ---

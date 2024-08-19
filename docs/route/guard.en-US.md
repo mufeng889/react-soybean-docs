@@ -1,5 +1,5 @@
 ---
-group: Routing
+group: Elegant Router
 order: 5
 title: Route Guards
 ---

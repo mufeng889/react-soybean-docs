@@ -1,5 +1,5 @@
 ---
-group: Routing
+group: Elegant Router
 order: 2
 title: Create Route
 
