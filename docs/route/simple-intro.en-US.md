@@ -156,3 +156,7 @@ export default App;
 - `CustomRouterProvider`
 
 This function is used to register the router plugin. It takes only one parameter, which is used to register the loading component.
+
+## Returned `router` Instance
+
+- See [use-router](/docs/route/use-router-cn) for details.

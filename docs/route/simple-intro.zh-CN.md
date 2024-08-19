@@ -134,6 +134,8 @@ createBrowserRouter(routes, {
 用于在`init`之后执行,第一次跳转的时候做一些事情
 比如初始化`tab`等
 
+---
+
 ## 注册路由器插件
 
 ```ts
@@ -153,3 +155,9 @@ export default App;
 
 - `CustomRouterProvider`
 这个函数用于注册路由器插件。仅有一个参数，用于注册loading组件。
+
+---
+
+## 返回的`router`实例
+
+- 详见[use-router](/docs/route/use-router-cn)
