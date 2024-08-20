@@ -4,7 +4,16 @@
   "app.footer.umi": "React 应用开发框架",
   "app.footer.dumi": "组件/文档研发工具",
   "app.footer.qiankun": "微前端框架",
+  "app.footer.discussions": "讨论区",
+  "app.footer.bug-report": "报告 Bug",
+  "app.footer.issues": "议题",
   "app.footer.hooks": "React Hooks 库",
+  "app.footer.help": "帮助",
+  "app.footer.faq": "常见问题",
   "app.theme.switch.dark": "暗黑主题",
-  "app.footer.chinamirror": "国内镜像站点 🇨🇳"
+  "app.footer.chinamirror": "国内镜像站点 🇨🇳",
+  "soy-series": "Soybean 相关资源",
+  "online-preview": "在线预览",
+  "auto-router": "自动生成路由文件",
+  "out-box": "开箱即用"
 }

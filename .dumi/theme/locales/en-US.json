@@ -1,10 +1,19 @@
 {
   "app.header.lang": "English",
-  "app.footer.resources": "Ant Design Resources",
-  "app.footer.umi": "React Application Framework",
-  "app.footer.dumi": "Component doc generator",
-  "app.theme.switch.dark": "Dark theme",
-  "app.footer.qiankun": "Micro-Frontends Framework",
+  "app.footer.resources": "Ant Design Related Resources",
+  "app.footer.umi": "React Application Development Framework",
+  "app.footer.dumi": "Component/Documentation Development Tool",
+  "app.footer.qiankun": "Micro-Frontend Framework",
+  "app.footer.discussions": "Discussion Area",
+  "app.footer.bug-report": "Report Bug",
+  "app.footer.issues": "Issues",
   "app.footer.hooks": "React Hooks Library",
-  "app.footer.chinamirror": "China Mirror 🇨🇳"
+  "app.footer.help": "Help",
+  "app.footer.faq": "Frequently Asked Questions",
+  "app.theme.switch.dark": "Dark Theme",
+  "app.footer.chinamirror": "China Mirror Site 🇨🇳",
+  "soy-series": "Soybean Related Resources",
+  "online-preview": "Online Preview",
+  "auto-router": "Automatically Generate Route Files",
+  "out-box": "Ready to Use"
 }
