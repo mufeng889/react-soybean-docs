@@ -4,31 +4,31 @@ title: 目标
 
 ## 2024年10月
 
-1. 同步`soybean`目前的更新
+1. 同步`soybean`目前的更新 ❌
 
 ## 2024年9月
 
-1. 完善hooks的文档
-2. 写一些实例实例组件的用法
-3. 支持`react-auto-route`可以传入自定义的错误边界的路径,并且加以完善
-4. 将路由错误边界和路由加载之前的错误边界结合起来，加上判断逻辑，开发环境下显示错误原因，以及写上注释可以做监控埋点上报
-5. `request`也就是`axios`和`soybean`保持同步
-6. 更新README
-7. 标签页的修改的bug
-8. 圈复杂度的优化`admin-layout`
-9. 手机不能点击`tab`
-10. packages`的`color`和`util`和`soybean`完成同步
+1. 完善hooks的文档 ❌
+2. 写一些实例实例组件的用法 ❌
+3. 支持`react-auto-route`可以传入自定义的错误边界的路径,并且加以完善 ❌
+4. 将路由错误边界和路由加载之前的错误边界结合起来，加上判断逻辑，开发环境下显示错误原因，以及写上注释可以做监控埋点上报 ❌
+5. `request`也就是`axios`和`soybean`保持同步 ✔
+6. 更新README ✔
+7. 标签页的修改的bug ✔
+8. 圈复杂度的优化`admin-layout` ❌
+9. 手机不能点击`tab` ❌
+10. packages`的`color`和`util`和`soybean`完成同步 ❌
 
 ## 2024年 8月
 
-1. 完善useTableHooks的文档
+1. 完善useTableHooks的文档 ✔
 
-2. 去除路由的`toSorted`方法，以兼容更多的浏览器
+2. 去除路由的`toSorted`方法，以兼容更多的浏览器 ✔
 
-3. 完善文档移动端下的`tab`的适配
+3. 完善文档移动端下的`tab`的适配 ✔
 
-4. 完善和优化`simple-router`的代码
+4. 完善和优化`simple-router`的代码 ✔
 
-5. 完善`router`的文档
+5. 完善`router`的文档 ✔
 
-6. 完善文档的页脚
+6. 完善文档的页脚 ✔

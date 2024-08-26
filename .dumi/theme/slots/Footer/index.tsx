@@ -10,7 +10,6 @@ import useLocation from '../../../hooks/useLocation';
 import {
   BugOutlined,
   GithubOutlined,
-  HistoryOutlined,
   IssuesCloseOutlined,
   MessageOutlined,
   QuestionCircleOutlined,
