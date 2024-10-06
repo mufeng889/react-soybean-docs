@@ -17,14 +17,16 @@ title: 介绍
 - **前沿技术应用**：采用 React18.3,React-Router-Dom V6,Redux/toolkit Vite5, TypeScript,和 UnoCSS 等最新流行的技术栈。
 - **清晰的项目架构**：采用 pnpm monorepo 架构，结构清晰，优雅易懂。
 - **严格的代码规范**：遵循 [SoybeanJS 规范](/zh/standard/)，集成了eslint, prettier 和 simple-git-hooks，保证代码的规范性。
-- **TypeScript**： 支持严格的类型检查，提高代码的可维护性。
+- **TypeScript**： 通过支持严格的类型检查和内置多个 hook 的类型推导，仅需定义简洁的类型，即可享受便捷的 TypeScript 类型提示，显著提升代码的可维护性。
 - **丰富的主题配置**：内置多样的主题配置，与 UnoCSS 完美结合。
 - **内置国际化方案**：轻松实现多语言支持。
+- **丰富的路由功能**：基于 React-Router V6 扩展了路由 API，提供类似 Vue-Router 的便捷使用体验，让路由管理更加灵活高效。
 - **自动化文件路由系统**：自动生成路由导入、声明和类型。更多细节请查看 [Elegant Router](https://github.com/mufeng889/react-auto-router)。
 - **灵活的权限路由**：同时支持前端静态路由和后端动态路由。
 - **丰富的页面组件**：内置多样页面和组件，包括403、404、500页面，以及布局组件、标签组件、主题配置组件等。
 - **命令行工具**：内置高效的命令行工具，git提交、删除文件、发布等。
 - **移动端适配**：完美支持移动端，实现自适应布局。
+- **良好UI**：在发生错误的时候自动捕获错误，并显示友好界面，帮助用户快速定位和解决问题，还可以再组件内监控埋点上报。
 
 ---
 
@@ -43,12 +45,10 @@ title: 介绍
 - **NaiveUI 版本:**
   - [预览地址](https://naive.soybeanjs.cn/)
   - [Github 仓库](https://github.com/soybeanjs/soybean-admin)
-  - [Gitee 仓库](https://gitee.com/honghuangdc/soybean-admin)
 
 - **AntDesignVue 版本:**
   - [预览地址](https://antd.soybeanjs.cn/)
   - [Github 仓库](https://github.com/soybeanjs/soybean-admin-antd)
-  - [Gitee 仓库](https://gitee.com/honghuangdc/soybean-admin-antd)
 
 - **旧版:**
   - [预览地址](https://legacy.soybeanjs.cn/)
@@ -66,7 +66,7 @@ title: 介绍
 
 ## 需要掌握的基础知识
 
-本项目基于 Vue3, Vite, TS 开发，并全部采用了 Vue3 的**script-setup**写法，建议在开发前先学一下以下内容，提前了解和学习这些知识，会对项目理解非常有帮助:
+本项目基于 React 18,Redux/toolkit,React-Router V6, Vite, TS 开发，建议在开发前先学一下以下内容，提前了解和学习这些知识，会对项目理解非常有帮助:
 
 - [ES6](https://es6.ruanyifeng.com/)
 - [React](https://www.reactjs.cn/learn)

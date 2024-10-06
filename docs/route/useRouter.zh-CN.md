@@ -7,10 +7,6 @@ title: useRouter
 ---
 
 
-## currentRoute
-
-当前的 RouteLocationNormalized。
-
 ## addReactRoutes
 
 ▸ **addReactRoutes**(routes: ElegantConstRoute[]): () => `void`

@@ -18,6 +18,9 @@ title: 快速开始
 
 ---
 
+### Mock
+本项目借助 [Apifox](https://apifox.com/) 的云端mock功能实现mock请求，接口文档：[soybean-admin-mock](https://apifox.com/apidoc/shared-35c8727a-d3ab-47e9-8863-ef8e37df6887?pwd=F6LN1ArU)
+
 ## VSCode插件
 
 本项目推荐使用 VSCode 进行开发，项目里面已内置 VSCode 配置，包含推荐的插件和设置。

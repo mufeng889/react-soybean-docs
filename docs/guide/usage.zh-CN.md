@@ -78,18 +78,3 @@ title: 图标教程
 
 - svg-icon 为全局组件，已经注册过了，直接在 template 中应用，icon 属性为 iconify 图标名称, local-icon 为本地 svg 图标的文件名
 
-## 三、通过 render 函数渲染: 适用于 NaiveUI 的图标渲染
-
-- 确定图标名字，如：iconify: **'mdi-emoticon'**, 或者本地 svg 图标 'custom-icon.svg'
-
-  - 使用 `useSvgIcon`
-
-    ```typescript
-    import { useSvgIcon } from '@/hooks/common/icon';
-
-    const { SvgIconVNode } = useSvgIcon();
-
-    SvgIconVNode({ icon: 'ant-design:close-outlined', fontSize: 18 }); // iconify
-
-    SvgIconVNode({ localIcon: "custom-icon" }); // 本地svg图标
-    ```

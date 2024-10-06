@@ -4,7 +4,7 @@ order: 1
 title: 概述
 ---
 
-这款路由插件是基于 `react-router-dom` 并借鉴了 `vue-router` 部分源码实现的，旨在帮助开发者在 `react` 项目中更高效地使用路由。它对 `react-router-dom` 进行了轻量级封装，不会影响你正常使用 `react-router-dom` 的 API。虽然参考了 `vue-router` 的设计，但并非完全模仿，因此不能直接按照 `vue-router` 的 API 使用。插件的初衷是为了让熟悉 `vue` 的开发者在转向 `react` 时更容易上手，减少学习成本并简化路由的使用。目前已实现了大部分功能，后续将持续完善。
+这款路由插件是基于 `react-router-dom` 并借鉴了 `vue-router` 部分源码实现的，旨在帮助开发者在 `react` 项目中更高效地使用路由。它对 `react-router-dom` 进行了轻量级封装，不会影响你正常使用 `react-router-dom` 的 API。虽然参考了 `vue-router` 的设计，但并非完全模仿，因此不能直接按照 `vue-router` 的 API 使用。插件的初衷是为了让熟悉 `vue` 的开发者在转向 `react` 时更容易上手，减少学习成本并简化路由的使用。
 
 ## 创建路由器实例
 
@@ -51,10 +51,7 @@ export const router = new CreateRouter({
   basename: VITE_BASE_URL,
   history: VITE_ROUTER_HISTORY_MODE,
   getReactRoutes,
-  init,
-  beforeEach: createRouteGuard,
-  afterEach,
-  firstInit: initBeforeRoute
+  init
 });
 ```
 
@@ -103,50 +100,22 @@ createBrowserRouter(routes, {
 这个参数是一个函数，用于初始化路由。
 这个函数接收一个`RemixRouter`类型的参数，你可以在这里进行一些初始化操作，例如获取用户信息，初始化路由等。
 
-- `beforeEach`
-
-这个参数是一个函数，用于在路由切换之前执行。
-
-这个函数接收三个参数
-
-1. to: 跳转的目标路由对象
-2. from: 当前路由对象
-3. next: 一个函数，用于继续执行路由切换。
-
-必须返回 `next`
-
-`next(true)`代表拦截当前路由切换
-
-`next(false)`,`next()`,代表继续执行路由切换。
-
-`next(/manager/user)`代表跳转到指定路由。目前仅支持路由地址，不支持路由对象。
-
-- `afterEach`
-这个参数是一个函数，用于在路由切换之后执行。
-
-这个函数接收两个参数
-
-1. to: 跳转的目标路由对象
-2. from: 当前路由对象
-
-- `firstInit`
-
-用于在`init`之后执行,第一次跳转的时候做一些事情
-比如初始化`tab`等
-
 ---
 
 ## 注册路由器插件
 
 ```ts
-import { router } from '@/router';
+import { RouterProvider } from '@sa/simple-router';
 import GlobalLoading from './components/common/GlobalLoading.tsx';
 
 const App = () => {
  );
 
   return (
-   {router.CustomRouterProvider(<GlobalLoading />)}
+      <RouterProvider
+            fallback={<GlobalLoading />}
+            router={router}
+          />
   );
 };
 

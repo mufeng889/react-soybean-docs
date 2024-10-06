@@ -11,4 +11,4 @@ title: 概述
 
 - 本系统的生成路由基于插件 [Elegant Router](https://github.com/mufeng889/react-auto-route)，详细用法请查看插件文档。
 
-- 实际使用是基于[Simple Router](https://github.com/mufeng889/react-simple-router)大部分方法借鉴了`vue-router`的源码，让你使用`react路由`的时候更加简单
+- 实际使用是基于[Simple Router](https://github.com/mufeng889/react-simple-router)大部分方法借鉴了`vue-router`的源码，让你使用`react路由`的时候更加简单,不用担心会有什么兼容或其他问题,只是基于React-Router V6 进行了扩展，没有做任何修改
