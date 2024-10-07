@@ -355,6 +355,10 @@ server {
 
 > 📢 有热心群友反馈：项目在接口时，请求发送成功 , 可以在请求的响应体中看到数据，但是无法将数据渲染到页面中
 
+## vscode的i18nAlly插件无法新增多语言
+
+参考：[fix(utils): 修复windows系统下使用vscode的i18nAlly插件无法新增多语言的问题 #630](https://github.com/soybeanjs/soybean-admin/pull/630)
+
 ## 项目中使用 Iframe 嵌入本地的 HTML 时出现 404 的问题
 
 📢 有热心群友反馈：在项目开发过程中，业务需要在项目中使用 Iframe 嵌入本地的 HTML 文件, 但是嵌入后无法显示页面内容，显示的是 404 页面
