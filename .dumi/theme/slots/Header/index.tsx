@@ -271,7 +271,7 @@ const Header: React.FC = () => {
     </a>,
           <a
           key="qq"
-          href="https://qm.qq.com/cgi-bin/qm/qr?k=WBX5tYiXMmmeid0Vw4yaqtSFqdBugAYY&jump_from=webapi&authKey=DNjXMlJRUf0EMrM+WV9fed2D1PaB3isk8Ph/6GYyruQeR2W/eIz5V6sk1FLJUP98"
+          href="https://qm.qq.com/cgi-bin/qm/qr?k=lf7vqv-9JgJ_NDBAUk9EofQEfpqDw7so&jump_from=webapi&authKey=Ueo/dyEtrRm1vgkMI4yqiKjBRtKQuaEGNxMaXX56CoPQz2GRFP+qAADfKoe3ajJN"
           target="_blank"
           rel="noreferrer"
         >
